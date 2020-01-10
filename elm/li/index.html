@@ -40,19 +40,19 @@
 	</header>
 	<nav class="mui-bar mui-bar-tab">
 	    <a class="mui-tab-item mui-active">
-	        <span class="mui-icon"><img src="images/waimai.svg" alt="" /></span>
+	        <span class="mui-icon"><img src="../images/waimai1.svg" alt="" /></span>
 	        <span class="mui-tab-label">外卖</span>
 	    </a>
 	    <a class="mui-tab-item">
-	        <span class="mui-icon"><img src="images/sousuo.svg" alt="" /></span>
+	        <span class="mui-icon"><img src="../images/sousuo.svg" alt="" /></span>
 	        <span class="mui-tab-label">搜索</span>
 	    </a>
 	    <a class="mui-tab-item">
-	        <span class="mui-icon"><img src="images/dingdan.svg" alt="" /></span>
+	        <span class="mui-icon"><img src="../images/dingdan.svg" alt="" /></span>
 	        <span class="mui-tab-label">订单</span>
 	    </a>
 	    <a class="mui-tab-item">
-	        <span class="mui-icon"><img src="images/wode.svg" alt="" /></span>
+	        <span class="mui-icon"><img src="../images/wode.svg" alt="" /></span>
 	        <span class="mui-tab-label">我的</span>
 	    </a>
 	</nav>
@@ -100,15 +100,7 @@
 		<div class="fjsj" style="background: white;margin-top:10px;padding-top: 10px;">
 			<h4 style="margin-left:15px;color:gray;">附近商家</h4>
 			<ul class="mui-table-view" style="margin-top:10px;">
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="javascript:;">
-			            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-			            <div class="mui-media-body">
-			                幸福
-			                <p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-			            </div>
-			        </a>
-			    </li>
+			    
 			</ul>
 		</div>
 	</div>
@@ -124,14 +116,16 @@
 	getDataByGet("/v2/index_entry",data,function(data){
 		console.log(data);
 		for(var i=0;i<8;i++){
-			$('<div><img src="https://fuss10.elemecdn.com/'
+			$('<div id="'+data[i].id
+			+'"><img src="https://fuss10.elemecdn.com/'
 			+data[i].image_url
 			+'" alt="" style="width:70%;margin-bottom:20px"/><br>'
 			+data[i].title
 			+'</div>').appendTo("#slider1 .mui-but");
 		}
 		for(var i=8;i<data.length;i++){
-			$('<div><img src="https://fuss10.elemecdn.com/'
+			$('<div id="'+data[i].id
+			+'"><img src="https://fuss10.elemecdn.com/'
 			+data[i].image_url
 			+'" alt="" style="width:70%;margin-bottom:20px"/><br>'
 			+data[i].title
@@ -145,7 +139,32 @@
 	}
 	getDataByGet("/shopping/restaurants",datas,function(data){
 		console.log(data);
-		
+		for(var i=0;i<4;i++){
+			$('<li class="mui-table-view-cell mui-media">'
+	        +'<a href="javascript:;" id="'
+	        +data[i].id+'">'
+            +'<img class="mui-pull-left" style="width:22%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
+            +data[i].image_path
+            +'" /><div class="mui-media-body" style="line-height: 28px;">'
+            +data[i].name
+            +'<span class="mui-pull-right">保准票</span>'
+            +'<p class="mui-ellipsis">'
+            +'☆☆☆'
+            +data[i].rating
+            +' 月售<span>'
+            +data[i].recent_order_num
+            +'</span>单<span class="mui-pull-right">'
+            +data[i].delivery_mode.text
+            +'准时达</span><br />'
+            +'￥'+data[i].float_minimum_order_amount
+            +'起送/'
+            +data[i].piecewise_agent_fee.tips
+            +'<span class="mui-pull-right">'
+            +data[i].distance+'/'
+            +data[i].order_lead_time
+            +'</span></p>'
+            +'</div> </a></li>').appendTo(".fjsj .mui-table-view")
+		}
 	})
 	
 </script>
