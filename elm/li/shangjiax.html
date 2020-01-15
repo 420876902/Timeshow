@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		ul,li{
+			list-style: none;
+		}
+		.cent{
+			width:100%;
+		}
+		.cent ul{
+			width:100%;
+			padding: 0;
+			height:60px;
+			margin-top:0;
+			text-align: center;
+			background: white;
+			border-bottom: 1px solid #d9d9d9;
+		}
+		.cent ul li{
+			width:50%;
+			text-align: center;
+			float: left;
+			line-height:60px;
+		}
+		.cent ul li span.style{
+			padding-bottom:6px;
+			border-bottom: 2px solid #3190e8;
+		}
+		.cent .shiping,.cent .pingjia{
+			width:100%;
+			margin-top: -15px;
+			height:100px;
+		}
+		.cent .shiping{
+			background:red;
+		}
+		.cent .pingjia{
+			background:blue;
+			display: none;
+		}
+	</style>
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 35px;z-index:10;color: white;position: absolute;"></a>
+		    
+		<div class="mui-content">
+		    <div class="tou" style="height: 110px;overflow: hidden;"></div>
+		    <div class="cent">
+		    	<ul class="tab">
+		    		<li><span class="style">商品</span></li>
+		    		<li><span>评价</span></li>
+		    	</ul>
+		    	<div class="shiping"></div>
+		    	<div class="pingjia"></div>
+		    </div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/network.js"></script>
+	<script type="text/javascript">
+		var ids = window.location.search;
+		var id = ids.substring(5);
+		console.log(id);
+		$(".tab li:eq(0)").on("tap",function(){
+			$(this).children('span').addClass("style")
+			$(this).siblings().children('span').removeClass("style");
+			$(".shiping").show().siblings('.pingjia').hide();
+		})
+		$(".tab li:eq(1)").on("tap",function(){
+			$(this).children('span').addClass("style")
+			$(this).siblings().children('span').removeClass("style");
+			$(".pingjia").show().siblings('.shiping').hide();
+		})
+	//商家介绍
+	var data = {
+		
+	}
+	getDataByGet("/shopping/restaurant/"+id,data,function(data){
+		console.log(data);
+			$('<div style="height:110px;overflow:hidden;z-index:-1;"><img src="//elm.cangdu.org/img/'+data.image_path
+			+'" style="width:100%;filter:blur(6px);"/><div style="position:absolute;top:0;background-color: rgba(119,103,137,.43);width:100%;filter:blur(6px);height:110px;"></div></div>').appendTo('.mui-content .tou');
+			$('<div class="jei" style="height:110px;width:100%;position:relative;top:-110px;padding: .7rem .7rem .4rem .7rem;">'
+			+'<img class="mui-pull-left" style="width:19%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
+            +data.image_path
+            +'" /><span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-right" style="margin-top:30px;font-size:28px;color:white;transform: rotate(180deg);"></span><div class="mui-media-body" style="line-height: 20px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;color:white!important;">'
+            +data.name
+            +'</p>'
+            +'<p class="mui-ellipsis" style="color:white!important;">'
+            +'商家配送/分钟送达/'
+            +data.piecewise_agent_fee.tips
+            +'<span><br />'
+            +'公告：'+data.promotion_info
+            +'</p></div></div>').appendTo(".mui-content .tou")
+            var act = data.activities.length;
+            console.log(act);
+		if(act==1){
+			$('<p style="width:91%;position:absolute;color:white;left:20px;top:90px;z-index:11;"><span style="display: inline-block;width:17px;height:17px;border-radius:3px;background-color:#'
+			+data.activities[0].icon_color
+			+'">'+data.activities[0].icon_name
+			+'</span>'+data.activities[0].description
+			+'<span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-right" style="font-size:20px;color:white;transform: rotate(180deg);"></span><span class="mui-pull-right">1个活动</span></p>').appendTo(".mui-content .tou");	
+		}
+	})
+//	食品列表
+	var data1 = {
+		restaurant_id:id
+	}
+	getDataByGet("/shopping/v2/menu",data1,function(data){
+		console.log(data);
+		
+	})
+//	https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1
+	</script>
+
+</html>
