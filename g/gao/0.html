@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+        .pds{
+            width: 100%;
+            height: 135px;
+            background-color:#3190e8;
+        }
+        ul li{
+            list-style: none;
+            padding: 10px;
+        }
+        .pds .my{
+            width: 100%;
+            text-align: center;
+            color:white;
+            padding:15px;
+            font-weight: bold;
+            
+        }
+        .pds .imgphone{
+            width: 100%;
+            padding:10px;
+        }
+        .pds .imgphone img{
+            width: 65px;
+            height: 65px;
+            border-radius:50%;
+            float: left;
+        }
+        .monery{
+            width: 100%;
+            height: 100px;
+            background-color: white;
+        }
+        .monery div{
+            width: 33%;
+            height: 100%;
+            padding:20px;
+            font-size:14px;
+            float: left;
+            border-right:1px solid gray;
+            text-align: center;
+        }
+        .monery div.bodd{
+            border-right:0;
+        }
+        .monery .spmorye,
+        .monery .speays,
+        .monery .spjf{
+            color:orange;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .monery .speays{
+            color:red;
+        }
+        .monery .spjf{
+            color:green;
+        }
+        .lieb{
+            width: 100%;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="pds">
+    <div class="my">我的</div>
+    <div class="imgphone">
+        <img src="../images/1.jpeg">
+        <div>1213131313</div>
+    </div>
+</div>
+<!-- 头部↑ -->
+<div class="monery">        
+    <div><span class="spmorye">0.00</span>元<br>我的余额</div>
+    <div><span class="speays">3</span>个<br>我的优惠</div>
+    <div class="bodd"><span class="spjf">0</span>分<br>我的积分</div>
+</div>
+<ul class="lieb"> 
+    <li>我的订单</li>
+    <li>积分商城</li>
+    <li>饿了吗会员卡</li>
+
+</ul>
+
+<ul class="lieb"> 
+    <li>服务中心</li>
+    <li>下载饿了吗APP</li>
+</ul>
+</body>
+</html>
