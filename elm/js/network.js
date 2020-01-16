@@ -14,7 +14,6 @@ function getDataByGet(url,data,callback){
 
 
 
-
 //function getDataByPost(url,data){
 //
 //}
