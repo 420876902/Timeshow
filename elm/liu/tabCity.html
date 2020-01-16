@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="../css/mui.min.css" rel="stylesheet" />
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .top {
+            background-color: #3190e8;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 2.95rem;
+        }
+        
+        #text {
+            color: white;
+            font-size: 1.5rem;
+            padding-left: 7.5rem;
+        }
+        
+        #tab {
+            color: white;
+            font-size: 1rem;
+            padding-left: 5.5rem;
+        }
+        
+        .cont {
+            width: 100%;
+            height: 4rem;
+        }
+        
+        .cityForm {
+            background-color: #fff;
+            border-top: 1px solid #e4e4e4;
+            border-bottom: 1px solid #e4e4e4;
+            padding-top: 3.5rem;
+        }
+        
+        .cityForm .cont input {
+            border: 1px solid #e4e4e4;
+            padding: 0 .3rem;
+            font-size: 1rem;
+            color: #333;
+        }
+        
+        .cityForm .btn input {
+            width: 100%;
+            height: 2.5rem;
+            background-color: #3190e8;
+            font-size: 1rem;
+            color: #fff;
+        }
+        
+        .lishi {
+            border-top: 1px solid #e4e4e4;
+            border-bottom: 1px solid #e4e4e4;
+            padding-left: .5rem;
+            font: .475rem/.8rem Microsoft YaHei;
+        }
+    </style>
+</head>
+
+<body>
+	 <header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="background: #3190e8;color:white;"></a>
+        <h1 class="mui-title text" style="font-size:20px!important;color:white;"></h1>
+        <span class="mui-pull-right" style="line-height: 50px;">切换城市</span>
+    </header>
+    <div class="mui-content" style="padding-top:0">
+    	<form action="" class="cityForm">
+        <div class="cont">
+            <input type="search" name="city" id="" placeholder="输入学校、商务楼、地址">
+        </div>
+        <div class="btn">
+            <input type="submit" name="submit" id="" value="提交">
+        </div>
+    </form>
+
+    <header class="lishi">搜索历史</header>
+    </div>
+    
+
+
+    <script src="../js/jquery-1.11.3.js"></script>
+    <script src="../js/mui.js"></script>
+    <script src="../js/network.js"></script>
+    <script type="text/javascript">
+        var ids = window.location.search;
+        var id = ids.substring(4);
+        console.log(id);
+        
+		 //定位地址
+	    // https://elm.cangdu.org/v1/cities?id
+	    var data1 = {
+	        
+	    }
+	    getDataByGet("/v1/cities/" + id,data1,function(data){
+	        console.log(data);
+	        $('.text').text(data.name);
+	    })
+
+
+
+        $('#fh').on('tap', function() {
+            location.href = 'city.html';
+        })
+    </script>
+</body>
+
+</html>
