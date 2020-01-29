@@ -7,7 +7,24 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 	</head>
-
+<style>
+	ul,li{
+		list-style: none;
+	}
+	.sj li .mui-media-body .mui-ellipsis{
+		font-size:11px;
+	}
+	.feilei>li{
+		float: left;
+		background: white;
+		width:33%;
+		padding: 12px;
+		text-align: center;
+	}
+	.active{
+		background: #fff!important;
+	}
+</style>
 	<body>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
@@ -15,12 +32,31 @@
 		</script>
 		<header class="mui-bar mui-bar-nav" style="background: #3190e8;">
 		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:white;font-weight: bold;"></a>
-		    <h1 class="mui-title" style="color:white;font-weight: bold;">标题</h1>
+		    <h1 class="mui-title" style="color:white;font-weight: bold;font-size:20px;">标题</h1>
 		</header>
 		<div class="mui-content">
-		    <ul class="mui-table-view">
+			<ul class="mui-table-view feilei" style="margin-top:0;font-size: 15px;color: #333;"> 
+		        <li class="mui-table-view-cell mui-collapse">
+		            <a class="mui-navigate-right" href="#">面板1</a>
+		        </li>
+		        <li class="mui-table-view-cell mui-collapse">
+		            <a class="mui-navigate-right" href="#" >排序</a>
+		        </li>
+		        <li class="mui-table-view-cell mui-collapse">
+		            <a class="mui-navigate-right" href="#">筛选</a>
+		        </li>
+		    </ul>
+		    <ul class="mui-table-view sj" style="margin-top:43px">
 		        
 		    </ul>
+		    <div class="lei"  style="display:none;position: absolute;top: 87px;width: 100%;background: white;font-size:13px;color:#333;">
+		    	<ul class="lb" style="width:50%;height:390px;padding:0px;background: #f1f1f1;margin: 0;float:left;">
+		    		
+		    	</ul>
+		    	<ul class="biao" style="width:50%;height:390px;overflow:scroll;padding:0px;background: #fff;margin: 0;float:left;">
+		    		
+		    	</ul>
+		    </div>
 		</div>
 	</body>
 <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
@@ -29,5 +65,111 @@
 	var ids = window.location.search;
 	var id = ids.substring(5);
 	console.log(id);
+	
+	$(".feilei li:eq(0)").on("tap",function(){
+		if($(this).hasClass("mui-active")){
+			$(".lei").hide();
+			var tit = $(".mui-title").html();
+			$(".feilei li:eq(0) a").html(tit);
+		}else{
+			$(".lei").show();
+			$(".feilei li:eq(0) a").html("分类");
+		}
+	})
+	
+	var data = {}
+	getDataByGet("/v2/index_entry",data,function(data){
+//		console.log(data);
+		for(var i=0;i<data.length;i++){
+			if(data[i].id==id){
+				$(".mui-title").html(data[i].title);
+				$(".feilei li:eq(0) a").html(data[i].title);
+			}
+		}
+	})
+	var datas = {
+		latitude:37.687019,
+		longitude:112.752777,
+	}
+	getDataByGet("/shopping/restaurants",datas,function(data){
+//		console.log(data);
+		for(var i=0;i<data.length;i++){
+			$('<li class="mui-table-view-cell mui-media" idd="'
+			+data[i].id+'">'
+	        +'<a href="javascript:;">'
+            +'<img class="mui-pull-left" style="width:18%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
+            +data[i].image_path
+            +'" /><div class="mui-media-body" style="line-height: 25px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;">'
+            +data[i].name
+            +'</span><span class="mui-pull-right">保准票</span></p>'
+            +'<p class="mui-ellipsis"><span style="color:orange">★★★★★'
+            +data[i].rating
+            +'</span> 月售<span>'
+            +data[i].recent_order_num
+            +'</span>单<span class="mui-pull-right">'
+            +data[i].delivery_mode.text
+            +'准时达</span><br />'
+            +'￥'+data[i].float_minimum_order_amount
+            +'起送/'
+            +data[i].piecewise_agent_fee.tips
+            +'<span class="mui-pull-right">'
+            +data[i].distance+'/<span style="color:#3190e8">'
+            +data[i].order_lead_time
+            +'</span></span></p>'
+            +'</div> </a></li>').appendTo(".sj")
+		}
+		//	点击
+		$(".sj li").on("tap",function(){
+			location.href="shangjiax.html?ids="+$(this).attr("idd");
+		});
+	})
+//	https://elm.cangdu.org/shopping/v2/restaurant/category 
+	data1 = {}
+	getDataByGet("/shopping/v2/restaurant/category",data1,function(data){
+		console.log(data);
+		for(var i=0;i<data.length;i++){
+			$("<li class='lb-li' style='padding: 11px;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
+			+data[i].image_url
+			+"' style='width:20px;margin-top:-5px;' /></div><span class='cont'>"
+			+data[i].name
+			+"</span><span class='mui-pull-right'>></span><span class='mui-pull-right' style='padding: 0px 5px;display: inline-block;background: #ccc;color: white;border-radius: 13px;font-size: 12px;margin-right: 10px;'>"
+			+data[i].count
+			+"</span></li>").appendTo(".lei .lb");
+		}
+		$(".lei .lb li:eq(0)").addClass("active");
+		var Li = data[0].sub_categories;
+		for(var j=0;j<Li.length;j++){
+			$("<li style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
+			+Li[j].image_url
+			+"' style='width:20px;margin-top:-5px;' /></div><span class='cont'>"
+			+Li[j].name
+			+"</span><span class='mui-pull-right' style='color: #ccc;font-size: 12px;margin-right: 10px;'>"
+			+Li[j].count
+			+"</span></li>").appendTo(".lei .biao");
+		}
+		var li = document.getElementsByClassName("lb-li");
+		for(var i = 0;i<li.length;i++){
+			li[i].index = i;
+			li[i].onclick=function(){
+				$(".lei .biao").html("");
+				$(this).addClass("active").siblings().removeClass("active");
+				var x = this.index;
+				console.log(x);
+				var ll = data[x].sub_categories;
+				for(var j=0;j<ll.length;j++){
+					$("<li style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
+					+ll[j].image_url
+					+"' style='width:20px;margin-top:-5px;' /></div><span class='cont'>"
+					+ll[j].name
+					+"</span><span class='mui-pull-right' style='color: #ccc;font-size: 12px;margin-right: 10px;'>"
+					+ll[j].count
+					+"</span></li>").appendTo(".lei .biao");
+				}
+			}
+		}
+		
+	})
+
+	
 </script>
 </html>

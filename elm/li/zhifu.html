@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	<style>
+		ul,li{
+			list-style: none;
+			padding-left: 0px;
+		}
+		.color{
+			background: #4cd964!important;
+		}
+	</style>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+
+	<header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:white;font-weight: bold;"></a>
+	    <h1 class="mui-title" style="font-size:20px!important;color:white;font-weight: bold;">在线支付</h1>
+	</header>
+	<div class="mui-content">
+	    <div class="shijian" style="line-height: 45px;background:white;padding: 30px;text-align: center; ">
+	    	<p style="color:#666">支付剩余时间</p>
+	    	<p class="daojs" style="color:#333;font-size: 2.5rem;">00  :  15  :  00</p>
+	    </div>
+	    <p style="background-color: #f1f1f1;padding: 0.7rem 0.7rem 0;font-size: 1.3rem;color: #666;">选择支付方式</p>
+	    <div class="zhifu" style='background: white;'>
+	    	<ul style="padding:10px">
+	    		<li style="padding:10px;border-bottom:1px solid #f6f6f6;">
+    				<span style="display:inline-block;width:50px;height:50px;background:url(../images/zhi.jpg);background-size:50px;border-radius: 50%;"></span>
+					<span style="position: absolute;margin:20px;">支付宝</span>
+					<span class="mui-pull-right color" style="width: 27px;height: 27px;background: #ddd;color: white;font-weight: bold;text-align: center;line-height: 30px;margin-top: 15px;border-radius: 50%;">✔</span>
+	    		</li>
+	    		<li style="padding:10px">
+    				<span style="display:inline-block;width:50px;height:50px;background:url(../images/wei.png);background-size:50px;border-radius: 50%;"></span>
+					<span style="position: absolute;margin:20px;">微信</span>
+					<span class="mui-pull-right" style="width: 27px;height: 27px;background: #ddd;color: white;font-weight: bold;text-align: center;line-height: 30px;margin-top: 15px;border-radius: 50%;">✔</span>
+					
+	    		</li>
+	    	</ul>
+	    </div>
+	    <button class="qrzf" style="width:90%;height: 50px;border-radius: 6px;font-weight: bold;font-size: 18px;margin-left:5%;text-align: center;color:white;background:#4cd964;">确认支付</button>
+	    <div class="chaoshi" style="display:none;width:80%;height:220px;top:190px;position: absolute;margin-left:10%;background: white;">
+	    	<img src="../images/jinggao.png" style="width: 25%;margin-left: 38%;margin-top:20px" />
+	    	<p style="width:90%;text-align: center;font-size:18px;line-height: 56px;color: black;">支付超时</p>
+	    	<button style="width:100%;height: 50px;position:absolute;bottom:0;border-radius: 6px;font-weight: bold;font-size: 20px;text-align: center;color:white;background:#4cd964;">确认</button>
+	    </div>
+	    <div class="zhif" style="display:none;width:80%;height:250px;top:190px;position: absolute;margin-left:10%;background: white;">
+	    	<img src="../images/jinggao.png" style="width: 25%;margin-left: 38%;margin-top:20px" />
+	    	<p style="width:90%;text-align: center;margin-left:5%;word-wrap: break-word; word-break: normal;font-size:18px;margin-top:15px;line-height: 26px;color: black;">当前环境无法支付，请打开官方APP进行付款</p>
+	    	<button style="width:100%;height: 50px;position:absolute;bottom:0;border-radius: 6px;font-weight: bold;font-size: 20px;text-align: center;color:white;background:#4cd964;">确认</button>
+	    </div>
+	</div>
+</body>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+	var ids = window.location.search;
+	var id = ids.substring(5);
+	console.log(id);
+	var timer = null;
+	var dt = new Date('2020/06/18,00:15:00');
+	var hh = dt.getHours();
+	var mm = dt.getMinutes();
+	var ss = dt.getSeconds();
+	timer = setInterval(fun,1000);
+	//显示当前倒计时的时分秒
+	function fun(){
+		ss --;
+		if(ss < 0){
+			mm --;
+			ss = 59;					
+		}
+		if(mm < 0){
+			hh --;
+			mm = 59;					
+		}
+		if(hh == 0 && mm == 0 && ss == 0){
+			clearInterval(timer);
+			$(".chaoshi").css("display","block");
+		}
+  	  var shijian = (hh < 10 ? '0' + hh : hh)+'  :  '+(mm < 10 ? '0' + mm : mm)+'  :  '+(ss < 10 ? '0' + ss : ss);
+  	  $(".daojs").html(shijian);
+	}
+	$(".chaoshi button").on("tap",function(){
+		$(".chaoshi").css("display","none");
+	})
+	$(".zhifu ul li .mui-pull-right").on("tap",function(){
+		$(this).addClass("color");
+		$(this).parent().siblings().children(".mui-pull-right").removeClass("color");
+	})
+	$(".qrzf").on("tap",function(){
+		$(".zhif").css("display","block");
+	})
+	$(".zhif button").on("tap",function(){
+		$(".zhif").css("display","none");
+	})
+</script>
+</html>

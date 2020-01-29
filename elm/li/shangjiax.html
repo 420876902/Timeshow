@@ -6,6 +6,7 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../fonts/mui-icons-extra.ttf" />
 	</head>
 	<style>
 		ul,li{
@@ -14,7 +15,7 @@
 		.cent{
 			width:100%;
 		}
-		.cent ul{
+		.cent .tab{
 			width:100%;
 			padding: 0;
 			height:60px;
@@ -23,13 +24,13 @@
 			background: white;
 			border-bottom: 1px solid #d9d9d9;
 		}
-		.cent ul li{
+		.cent .tab li{
 			width:50%;
 			text-align: center;
 			float: left;
 			line-height:60px;
 		}
-		.cent ul li span.style{
+		.cent .tab li span.style{
 			padding-bottom:6px;
 			border-bottom: 2px solid #3190e8;
 		}
@@ -39,11 +40,24 @@
 			height:100px;
 		}
 		.cent .shiping{
-			background:red;
+			/*background:red;*/
+			/*display: none;*/
 		}
 		.cent .pingjia{
-			background:blue;
+			/*background:blue;*/
 			display: none;
+		}
+		.zpj div{
+			float: left;
+		}
+		.li-di{
+			background: dodgerblue!important;
+			color:white!important;
+		}
+		.dj{
+			background: white!important;
+			font-weight: bold;
+			border-left:5px solid #3190e8!important;
 		}
 	</style>
 	<body>
@@ -60,8 +74,48 @@
 		    		<li><span class="style">商品</span></li>
 		    		<li><span>评价</span></li>
 		    	</ul>
-		    	<div class="shiping"></div>
-		    	<div class="pingjia"></div>
+		    	<div class="shiping">
+		    		<ul style="margin: 0;float:left;width:30%;background: #f9f9f9;padding-left:0px;line-height: 70px;">
+		    			
+		    		</ul>
+		    		<div class="spbd" style="width:70%;height:565px;float: left;overflow: scroll;">
+		    			<ul class="mui-table-view" style="width:100%">
+		    			   
+		    			</ul>
+		    			<div class="spk" style="width:100%"></div>
+		    		</div>
+		    		<div class="gwc" style="position:fixed;width:100%;height:50px;background:#3d3d3f;color:white;bottom:0;left:0">
+		    			<div class="che" style="width:60px;height:60px;border-radius:50%;background:white;position:absolute;left:5%;top:-30px;">
+		    				<img src="../images/gwc.png" alt="" style="width:50px;margin: 5px 7px;"/>
+		    			</div>
+		    			<p style="color:white;margin-left:25%;margin-top:5px">
+		    				<span style="font-weight:bold;font-size: 20px;">￥</span><span class="gwc-qian" style="font-weight:bold;font-size: 20px;">0.00</span><br>
+		    				<span class="psf" style="font-size: 11px;"></span>
+		    			</p>
+		    			<div class="jies" style="width:30%;height: 100%;background: #535356;font-size: 1.2rem;color: #fff;font-weight: 700;line-height: 50px;text-align: center;position: absolute;right: 0;top: 0;">
+		    				还差20起送
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="pingjia">
+	    			<div class="zpj" style="width:100%;height:120px;padding:10px 30px;background: white;">
+	    				<div class="zpj-left" style="width:40%;text-align: center;color:gray">
+	    					<h2 style="color:orange">4.7</h2>
+	    					<p class="zpj-l" style="font-size: 16px;">综合评价</p>
+	    					<p class="zpj-lg" style="font-size: 11px;margin-top: -5px;">高于周边商家<span>76.9</span>%</p>
+	    				</div>
+	    				<div class="zpj-right" style="width:60%;padding-left:30px">
+    						<p class="zpj-r">服务态度&nbsp;&nbsp;<span style="color:orange">★★★★★&nbsp;&nbsp;<span class="r">4.7</span></span></p>
+    						<p class="zpj-ri">菜品评价&nbsp;&nbsp;<span style="color:orange">★★★★★&nbsp;&nbsp;<span class="ri">4.7</span></span></p>
+    						<p class="zpj-rig">送达时间&nbsp;&nbsp;<span class="rig" style="color:orange"></span>分钟</p>
+	    				</div>
+	    			</div>
+	    			<div class="pjl" style="width:100%;">
+	    				<ul class="mui-table-view" style="height: 225px;font-size: 15px;width:100%;padding:10px;background: white;">
+	    					
+	    				</ul>
+	    			</div>
+		    	</div>
 		    </div>
 		</div>
 	</body>
@@ -86,13 +140,13 @@
 		
 	}
 	getDataByGet("/shopping/restaurant/"+id,data,function(data){
-		console.log(data);
+		console.log(data);	
 			$('<div style="height:110px;overflow:hidden;z-index:-1;"><img src="//elm.cangdu.org/img/'+data.image_path
 			+'" style="width:100%;filter:blur(6px);"/><div style="position:absolute;top:0;background-color: rgba(119,103,137,.43);width:100%;filter:blur(6px);height:110px;"></div></div>').appendTo('.mui-content .tou');
 			$('<div class="jei" style="height:110px;width:100%;position:relative;top:-110px;padding: .7rem .7rem .4rem .7rem;">'
 			+'<img class="mui-pull-left" style="width:19%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
             +data.image_path
-            +'" /><span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-right" style="margin-top:30px;font-size:28px;color:white;transform: rotate(180deg);"></span><div class="mui-media-body" style="line-height: 20px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;color:white!important;">'
+            +'" /><span class="mui-icon mui-icon-left-nav mui-pull-right" style="margin-top:30px;font-size:28px;color:white;transform: rotate(180deg);"></span><div class="mui-media-body" style="line-height: 20px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;color:white!important;">'
             +data.name
             +'</p>'
             +'<p class="mui-ellipsis" style="color:white!important;">'
@@ -102,7 +156,8 @@
             +'公告：'+data.promotion_info
             +'</p></div></div>').appendTo(".mui-content .tou")
             var act = data.activities.length;
-            console.log(act);
+            $(".psf").html(data.piecewise_agent_fee.tips);
+//          console.log(act);
 		if(act==1){
 			$('<p style="width:91%;position:absolute;color:white;left:20px;top:90px;z-index:11;"><span style="display: inline-block;width:17px;height:17px;border-radius:3px;background-color:#'
 			+data.activities[0].icon_color
@@ -112,14 +167,97 @@
 		}
 	})
 //	食品列表
+//	https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1
 	var data1 = {
 		restaurant_id:id
 	}
 	getDataByGet("/shopping/v2/menu",data1,function(data){
 		console.log(data);
+		for(var i=0;i<data.length;i++){
+			$('<li style="width:100%;background:#f9f9f9;color:gray;border-bottom:1px solid #d9d9d9;border-left:1px solid #d9d9d9;padding-left:20px;">'
+			+data[i].name
+			+'</li>').appendTo(".shiping>ul");
+			$(".shiping>ul li:eq(0)").addClass("dj");
+			var foods = data[i].foods;
+			for(var j=0;j<foods.length;j++){
+				$('<li class="mui-table-view-cell mui-media">'
+		        +'<a href="javascript:;">'
+		        +'<img class="mui-media-object mui-pull-left" src="http://elm.cangdu.org/img/'
+		        +foods[j].image_path
+		        +'"><div class="mui-media-body">'
+		        +foods[j].name 
+		        +'<p class="mui-ellipsis">'
+		        +foods[j].description+'<br>'+ foods[j].tips
+		        +'<br><span class="qian" style="color:orange">￥'
+		        +foods[j].specfoods[0].price
+				+'<span class="mui-pull-right" style="padding:0px 5px;font-size:20px;border-radius:50%;background:#3190e8;color:white;font-weight:bold;">+</span></p></div></a></li>').appendTo(".shiping .spbd>ul");
+			}
+		}
+		$(".shiping>ul li").on("tap",function(){
+			$(this).addClass("dj").siblings().removeClass("dj");
+		})
+	})
+	$(".jies").on("tap",function(){
+		location.href="jiesuan.html?ids="+id;
+	})
+
+//综合评价
+//https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/scores
+	var data2 = {
+		
+	}
+	getDataByGet("/ugc/v2/restaurants/"+id+"/ratings/scores",data2,function(data){
+//		console.log(data);
+		$('.pingjia .zpj-left h2 ').html((data.overall_score).toFixed(1));
+		$('.pingjia .zpj-lg span').html((data.compare_rating*100).toFixed(1));
+		$('.pingjia .zpj-right .zpj-r .r').html((data.service_score).toFixed(1))
+		$('.pingjia .zpj-right .zpj-ri .ri').html((data.food_score).toFixed(1))
+		$('.pingjia .zpj-right .zpj-rig .rig').html(data.deliver_time)
+	})
+	
+//	评价分类
+//https://elm.cangdu.org/ugc/v2/restaurants/1/ratings/tags
+	var data4 = {
+		
+	}
+	getDataByGet("/ugc/v2/restaurants/"+id+"/ratings/tags",data4,function(data){
+//		console.log(data);
+		for(var i=0;i<data.length;i++){
+			$("<li style='margin: 5px;float:left;border-radius:5px;background:#e8f5ff;color:gray;padding:10px;'>"
+			+data[i].name+"("+data[i].count
+			+")</li>").appendTo(".pingjia .pjl ul");
+		}
+		$(".pingjia .pjl ul li:eq(2)").css({"background":"#f9f9f9","color":"#aaa"});
+		$(".pingjia .pjl ul li:eq(0)").addClass("li-di");
+		$(".pingjia .pjl ul li").on("tap",function(){
+			$(this).addClass("li-di").siblings().removeClass("li-di");		
+		});
 		
 	})
-//	https://elm.cangdu.org/shopping/v2/menu?restaurant_id=1
+	
+	
+	
+//	评价信息
+//	https://elm.cangdu.org/ugc/v2/restaurants/1/ratings
+	var data3 = {
+		
+	}
+	getDataByGet("/ugc/v2/restaurants/"+id+"/ratings",data3,function(data){
+//		console.log(data);
+		var img = "https://fuss10.elemecdn.com/";
+		for(var i=0;i<data.length;i++){
+			$('<li class="mui-table-view-cell mui-media" style="background:white;">'
+		        +'<a href="javascript:;">'
+		        +'<img class="mui-media-object mui-pull-left" style="width:50px;border-radius:50%;margin-right:20px" src="http://elm.cangdu.org/img/default.jpg">'
+		        +'<div class="mui-media-body">'
+		        +data[i].username
+		        +'<span class="mui-pull-right" style="font-size:13px;color:#d9d9d9">'
+		        +data[i].rated_at
+		        +'</span><p class="mui-ellipsis"><span style="color:orange;">★★★★★</span>'
+		        +data[i].time_spent_desc
+		        +'</p></div></a></li>').appendTo(".pingjia .pjl");
+	    }
+	})
 	</script>
 
 </html>
