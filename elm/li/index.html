@@ -40,9 +40,9 @@
 </head>
 <body>
 	<header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
-		<span class="mui-icon mui-icon-search mui-pull-left" style="font-size:30px!important;color:white;"></span>
-	    <h1 class="mui-title" style="font-size:20px!important;color:white;">标题</h1>
-		<span class="mui-icon mui-icon-person mui-pull-right" style="font-size:30px!important;color:white;"></span>	    
+		<span class="mui-icon mui-icon-search mui-pull-left" style="font-size:30px!important;color:white;font-weight:bold;"></span>
+	    <h1 class="mui-title" style="font-size:20px!important;color:white;font-weight:bold;">标题</h1>
+		<span class="mui-icon mui-pull-right" style="height: 25px;width: 25px;margin: 10px;font-weight:bold;font-size:30px!important;color:white;background: url(../images/dl.svg);background-size: 25px;"></span>	    
 	</header>
 	<nav class="mui-bar mui-bar-tab">
 	    <a class="mui-tab-item mui-active">
@@ -160,11 +160,11 @@
 
 	//	附近商家
 	var datas = {
-		latitude:20.22967,
-		longitude:121.4762,
+		latitude:37.687019,
+		longitude:112.752777,
 	}
 	getDataByGet("/shopping/restaurants",datas,function(data){
-		console.log(data);
+//		console.log(data);
 		for(var i=0;i<data.length;i++){
 			$('<li class="mui-table-view-cell mui-media" idd="'
 			+data[i].id+'">'
@@ -174,10 +174,9 @@
             +'" /><div class="mui-media-body" style="line-height: 25px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;">'
             +data[i].name
             +'</span><span class="mui-pull-right">保准票</span></p>'
-            +'<p class="mui-ellipsis">'
-            +'☆☆☆'
+            +'<p class="mui-ellipsis"><span style="color:orange">★★★★★'
             +data[i].rating
-            +' 月售<span>'
+            +'</span> 月售<span>'
             +data[i].recent_order_num
             +'</span>单<span class="mui-pull-right">'
             +data[i].delivery_mode.text
@@ -186,9 +185,9 @@
             +'起送/'
             +data[i].piecewise_agent_fee.tips
             +'<span class="mui-pull-right">'
-            +data[i].distance+'/'
+            +data[i].distance+'/<span style="color:#3190e8">'
             +data[i].order_lead_time
-            +'</span></p>'
+            +'</span></span></p>'
             +'</div> </a></li>').appendTo(".fjsj .mui-table-view")
 		}
 		//	点击
