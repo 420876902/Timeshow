@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>钱</title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <style>
+        .top{
+            width: 100%;
+            height: 45px;
+            padding-top: 10px;
+            padding-left: 10px;
+            text-align: center;
+            position: relative;
+            background-color: #3190e8;
+        }
+        #back{
+            position:absolute;
+            left: 10px;
+            top:10px;
+            font-size:30px;
+        }
+        .toptext{
+            color:white;
+            font-weight: bold;
+        }
+        .cenrer{
+            width: 100%;
+            height: 160px;
+            background-color: #3190e8;
+            padding: 0 10px 0 10px;
+        }
+        .cenrer .yue{
+            width: 100%;
+            height: 150px;
+            border-radius:10px;
+            background-color: white;
+        }
+        .toppp{
+            width: 100%;
+            height: 40px;
+        }
+        #morey{
+            font-size:35px;
+            color:black
+        }
+        #tixian{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            color:white;
+            font-weight: bold;
+            margin-top: 25px;
+            text-align: center;
+            border-radius:10px;
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <span id="back"><</span>
+        <span class="toptext">我的余额</span>
+        
+    </div>
+    <div class="cenrer">
+        <div class="yue">
+           <div class="toppp">
+                <span style="float: left;padding: 10px;font-size: 14px;">当前余额</span>
+                <span style="float: right;padding: 10px;font-size: 14px;">余额说明</span>
+           </div>
+            <p><span id="morey">0.00</span id="morey">元</p>
+            <div id="tixian">提现</div>
+        </div>
+    </div>
+</body>
+</html>
