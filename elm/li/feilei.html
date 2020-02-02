@@ -24,6 +24,9 @@
 	.active{
 		background: #fff!important;
 	}
+	.paixu ul li{
+		border-bottom: 1px solid #ccc;
+	}
 </style>
 	<body>
 		<script src="../js/mui.min.js"></script>
@@ -43,18 +46,50 @@
 		            <a class="mui-navigate-right" href="#" >排序</a>
 		        </li>
 		        <li class="mui-table-view-cell mui-collapse">
-		            <a class="mui-navigate-right" href="#">筛选</a>
+		            <a class="mui-navigate-right" href="#" >筛选</a>
 		        </li>
 		    </ul>
 		    <ul class="mui-table-view sj" style="margin-top:43px">
 		        
 		    </ul>
-		    <div class="lei"  style="display:none;position: absolute;top: 87px;width: 100%;background: white;font-size:13px;color:#333;">
+		    <div class="lei"  style="display:none;position: fixed;background: rgba(2,2,2,0.3);height:100%;top: 87px;width: 100%;font-size:13px;color:#333;">
 		    	<ul class="lb" style="width:50%;height:390px;padding:0px;background: #f1f1f1;margin: 0;float:left;">
 		    		
 		    	</ul>
 		    	<ul class="biao" style="width:50%;height:390px;overflow:scroll;padding:0px;background: #fff;margin: 0;float:left;">
 		    		
+		    	</ul>
+		    </div>
+		    <div class="paixu" style="display:none;position: fixed;height:100%;top: 88px;background: rgba(2,2,2,0.3);width: 100%;color: #666;font-size: 14px;">
+		    	<ul style="background: white;margin:0;line-height: 60px;">
+		    		<li id="4">智能排序</li>
+		    		<li id="5">距离最近</li>
+		    		<li id="6">销量最高</li>
+		    		<li id="1">起送价最低</li>
+		    		<li id="2">配送速度最快</li>
+		    		<li id="3">评分最高</li>
+		    	</ul>
+		    </div>
+		    <div class="shaix" style="display:none;position: fixed;height:100%;top: 88px;background: rgba(2,2,2,0.3);width: 100%;color: #666;font-size: 14px;">
+		    	<ul style="background: white;margin:0;padding-left:0px;font-size: 11px;!important;">
+		    		<li style="padding:10px;color:#333!important;">
+		    			<p style="color:#333!important;font-size: 11px!important;">配送方式</p>
+		    			<div class="ps">
+		    				
+		    			</div>
+		    		</li>
+		    		<li style="padding:10px;color:#333!important;">
+		    			<p style="color:#333!important;font-size: 11px;!important;">商家属性（可以多选）</p>
+		    			<div class="sx">
+		    				<ul style="height: 90px;padding-left:5px;">
+		    					
+		    				</ul>
+		    			</div>
+		    		</li>
+		    		<li style="background:#d9d9d9;padding:5px;">
+		    			<button class="qingk" style="height: 50px;width: 49.5%; font-size: 20px;">清空</button>
+		    			<button class="qued" style="height: 50px;width: 49.5%; font-size: 20px; color: white;background: #56d176;">确定</button>
+		    		</li>
 		    	</ul>
 		    </div>
 		</div>
@@ -77,6 +112,100 @@
 		}
 	})
 	
+	$(".feilei li:eq(1)").on("tap",function(){
+		if($(this).hasClass("mui-active")){
+			$(".paixu").hide();
+		}else{
+			$(".paixu").show();
+		}
+	})
+	$(".feilei li:eq(2)").on("tap",function(){
+		if($(this).hasClass("mui-active")){
+			$(".shaix").hide();
+		}else{
+			$(".shaix").show();
+		}
+	})
+//筛选  配送方式
+	var dianji = true;
+//	shopping/v1/restaurants/delivery_modes
+	var data = {}
+	getDataByGet("/shopping/v1/restaurants/delivery_modes",data,function(data){
+//		console.log(data);
+		$("<span id='"
+		+data[0].id+"' style='margin-left:5px;border-radius:3px;padding:5px 15px;border:1px solid #ddd'>"
+		+data[0].text
+		+"</span>").appendTo(".ps");
+		$(".ps span").on("tap",function(){
+			if(dianji){
+				$(this).css("color","#"+data[0].color);
+				dianji=false;
+			}else{
+				$(this).css("color","#333");
+				dianji = true;
+			}
+		})
+	})
+//	筛选     商家属性
+//	/shopping/v1/restaurants/activity_attributes
+	var data = {}
+	var shud = true;
+	getDataByGet("/shopping/v1/restaurants/activity_attributes",data,function(data){
+		console.log(data);
+		for(var i=0;i<data.length;i++){
+			$("<li id='"+data[i].id
+			+"' style='width:28%;float:left;border-radius:3px;margin-top:10px;border:1px solid #ccc;padding:5px 25px 5px 5px;margin-right:10px;'><span style='padding:3px;border:1px solid #"
+			+data[i].icon_color
+			+";color:#"+data[i].icon_color+";border-radius:5px;margin-right:5px;'>"
+			+data[i].icon_name
+			+"</span><span class='name'>"+data[i].name
+			+"</span></li>").appendTo(".sx ul");
+		}
+		$(".sx ul li").on("tap",function(){
+			if(shud){
+				$(this).children(".name").css("color","#57A9FF");
+				shud=false;
+			}else{
+				$(this).children(".name").css("color","#333");
+				shud = true;
+			}
+		})
+	})
+	$(".qingk").on("tap",function(){
+		$(".sx ul li").children(".name").css("color","#333");
+		$(".ps span").css("color","#333");
+	})
+	$(".qued").on("tap",function(){
+		$(".feilei li:eq(2)").removeClass("mui-active");
+		$(".shaix").hide();
+		var delivery_mode = "delivery_mode";
+		var mode=[];
+		if($(".ps span").css("color","#57A9FF")){
+			mode.push($(".ps span").attr("id"));
+		}
+		datas[delivery_mode]=mode;
+		var arry = [];
+		var sxli = document.getElementsByClassName("sx").children("ul").children();
+		for(var i = 0;i < sxli.length;i++){
+			if(sxli[i].children(".name").css("color","#57A9FF")){
+				arry.push(sxli[i].attr("id"));
+			}
+		}
+		var support_ids = "support_ids";
+		datas[support_ids]=arry;
+		fun();
+	})
+	$(".paixu ul li").on("tap",function(){
+		var idd = $(this).attr("id");
+//		alert(idd);
+		var order_by = "order_by";
+		datas[order_by]=idd;
+		fun();
+		$(".paixu").hide();
+		$(".feilei li:eq(1)").removeClass("mui-active");
+	})
+
+//标题
 	var data = {}
 	getDataByGet("/v2/index_entry",data,function(data){
 //		console.log(data);
@@ -87,12 +216,16 @@
 			}
 		}
 	})
+//	商家
 	var datas = {
 		latitude:37.687019,
 		longitude:112.752777,
 	}
+	fun()
+	function fun(){
 	getDataByGet("/shopping/restaurants",datas,function(data){
 //		console.log(data);
+		$(".sj").html("");
 		for(var i=0;i<data.length;i++){
 			$('<li class="mui-table-view-cell mui-media" idd="'
 			+data[i].id+'">'
@@ -123,10 +256,12 @@
 			location.href="shangjiax.html?ids="+$(this).attr("idd");
 		});
 	})
+	}
+//	商家分类
 //	https://elm.cangdu.org/shopping/v2/restaurant/category 
 	data1 = {}
 	getDataByGet("/shopping/v2/restaurant/category",data1,function(data){
-		console.log(data);
+//		console.log(data);
 		for(var i=0;i<data.length;i++){
 			$("<li class='lb-li' style='padding: 11px;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
 			+data[i].image_url
@@ -139,7 +274,8 @@
 		$(".lei .lb li:eq(0)").addClass("active");
 		var Li = data[0].sub_categories;
 		for(var j=0;j<Li.length;j++){
-			$("<li style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
+			$("<li idd='"+Li[j].id
+			+"' style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
 			+Li[j].image_url
 			+"' style='width:20px;margin-top:-5px;' /></div><span class='cont'>"
 			+Li[j].name
@@ -154,10 +290,11 @@
 				$(".lei .biao").html("");
 				$(this).addClass("active").siblings().removeClass("active");
 				var x = this.index;
-				console.log(x);
+//				console.log(x);
 				var ll = data[x].sub_categories;
 				for(var j=0;j<ll.length;j++){
-					$("<li style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
+					$("<li idd='"+ll[j].id
+					+"' style='padding: 11px;border-bottom:1px solid #e4e4e4;'><div style='padding:5px;float:left;'><img src='https://fuss10.elemecdn.com/"
 					+ll[j].image_url
 					+"' style='width:20px;margin-top:-5px;' /></div><span class='cont'>"
 					+ll[j].name
@@ -165,8 +302,24 @@
 					+ll[j].count
 					+"</span></li>").appendTo(".lei .biao");
 				}
+				biaoli();
 			}
+			
 		}
+		function biaoli(){
+			$(".lei .biao li").on("tap",function(){
+				var tt = $(this).children(".cont").html();
+				$(".feilei li:eq(0) a").html(tt);
+				var idd = $(this).attr("idd");
+				var iddd = [idd];
+				var restaurant_category_ids = "restaurant_category_ids";
+				datas[restaurant_category_ids]=iddd;
+				fun();
+				$(".lei").hide();
+				$(".feilei li:eq(0)").removeClass("mui-active");
+			})
+		}
+		biaoli();
 		
 	})
 
