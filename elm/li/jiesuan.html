@@ -66,8 +66,8 @@
 		       </li> 
 		       <li>
 		       		<div style="width:100%;margin-bottom: 10px;border-bottom: 1px solid #f6f6f6;">
-		       			<img src="http://elm.cangdu.org/img/16f519f701e62361.jpg" class="" style="width:30px"/>
-		       			<span style="position: absolute;margin-left: 10px;margin-top: 4px;font-size: 20px;">数据毕设1111</span>
+		       			<img src="http://elm.cangdu.org/img/16f519f701e62361.jpg" class="sjimg" style="width:30px"/>
+		       			<span class="name" style="position: absolute;margin-left: 10px;margin-top: 4px;font-size: 20px;">数据毕设1111</span>
 		       		</div>
 		       		<ul class="sw" style="color:#666;padding-left: 0;margin-left: -15px;">
 		       			<li>
@@ -123,12 +123,22 @@
 		</div>
 	</body>
 <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/network.js"></script>
 <script type="text/javascript">
 	var ids = window.location.search;
 	var id = ids.substring(5);
 	console.log(id);
 	$(".jies").on("tap",function(){
 		location.href="zhifu.html?ids="+id;
+	})
+	//商家介绍
+	var data = {
+		
+	}
+	getDataByGet("/shopping/restaurant/"+id,data,function(data){
+		console.log(data);
+		$(".sjimg").attr("src","http://elm.cangdu.org/img/"+data.image_path);
+		$(".name").html(data.name);
 	})
 </script>
 </html>
