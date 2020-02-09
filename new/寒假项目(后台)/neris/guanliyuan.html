@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>分页</title>
+	<link rel="stylesheet" type="text/css" href="css/guanli.css"/>
+</head>
+
+<body>
+    <div class="flw_head">
+        <div class="flw_zuo">
+            <span>
+                <a href="#">首页</a>/
+            </span>
+            <span>
+                <a href="#">数据管理</a>/
+            </span>
+            <span>
+                管理员列表
+            </span>
+        </div>
+        <div class="flw_you">
+            <img class="box" src="./img/logo.jpg" alt="">
+            <ul class="xian">
+                <li><a href="">首页</a></li>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="cente">
+        <table id="to">
+            <tr>
+                <td>姓名</td>
+                <td>注册日期</td>
+                <td>地址</td>
+                <td>权限</td>
+            </tr>
+        </table>
+        <table id="neir">
+        </table>
+    </div>
+    <div id="page"></div>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="./js/ajax.js"></script>
+    <script type="text/javascript" src="./js/pageGroup.js"></script>
+    <script type="text/javascript">
+        var num = 0
+        var url = "https://elm.cangdu.org/admin/all"; // 接口    
+        var params = { // 参数
+            "offset": num,
+            "limit": 20
+        }
+        if ($("#neir").html("")) {
+            ajax(url, "GET", params, function (res) {
+                console.log(res.data)
+                for (var i = 0; i < res.data.length; i++) {
+                    console.log(res.data)
+                    $(`<tr class='trArr'>
+                                <td>${res.data[i].user_name}</td>
+                                <td>${res.data[i].create_time}</td>
+                                <td>${res.data[i].city}</td>
+                                <td>${res.data[i].admin}</td>
+                            </tr>`).appendTo("#neir")
+                }
+            }), function (err) {
+                console.log(err)
+            }
+        };
+        $("#page").paging({
+            nowPage: 1, // 当前页码
+            pageNum: 2000, // 总页码
+            buttonNum: 10, //要展示的页码数量
+            canJump: 1,// 是否能跳转。0=不显示（默认），1=显示
+            showOne: 0,//只有一页时，是否显示。0=不显示,1=显示（默认）
+            callback: function (num) { //回调函数
+                console.log(num);
+                $("#page ul li").click(function () {
+                    $("#neir").html("")
+                    var url = "https://elm.cangdu.org/admin/all"; // 接口    
+                    var params = { // 参数
+                        "offset": num,
+                        "limit": 20
+                    }
+                    ajax(url, "GET", params, function (res) {
+                        for (var i = 0; i < res.data.length; i++) {
+                            $(`<tr class='trArr'>
+                                <td>${res.data[i].user_name}</td>
+                                <td>${res.data[i].create_time}</td>
+                                <td>${res.data[i].city}</td>
+                                <td>${res.data[i].admin}</td>
+                            </tr>`).appendTo("#neir")
+                        }
+                        console.log("------")
+                    }), function (err) {
+                        console.log(err)
+                    }
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>

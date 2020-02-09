@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="">
+		<meta name="Description" content="">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>数据——用户列表</title>
+		<link rel="stylesheet" href="../tian/libs/css/common.css">
+		<link rel="stylesheet" href="../tian/libs/fonts/iconfont.css">
+		<link rel="stylesheet" href="../tian/css/index.css">
+		<link rel="stylesheet" type="text/css" href="../tian/css/default.css">
+		<link href="../tian/dist/pagination.css" rel="stylesheet" type="tian/text/css">
+		<link rel="stylesheet" type="text/css" href="../tian/css/app.css" />
+		<link rel="stylesheet" type="text/css" href="../tian/css/mui.min.css" />
+		<link rel="stylesheet" href="../tian/css/jquery.spinner.css" />
+		<link rel="stylesheet" type="text/css" href="../tian/css/add.css"/>
+	</head>
+	<body>
+		<div class="container">
+			<!-- 内容 -->
+			<div class="content">
+				<!-- 首页 -->
+				<div class="home">
+					<div class="he_header">
+						<div class="hr_text">
+							<span class="hr_item">
+								<span class="hr_txt"><a href="index.html" style="text-decoration: none;color: #000000;">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;添加数据&nbsp;&nbsp;/&nbsp;&nbsp;添加商铺</span>
+							</span>
+						</div>
+
+						<div class="hr_user">
+							<img src="img/default.jpg" alt="" class="hr_logo">
+							<ul class="hr_menu" style="display: none;">
+								<li class="hr_list"><a href="index.html" style="color: #000000;">首页</a></li>
+								<li class="hr_list" id="tui">退出</li>
+							</ul>
+						</div>
+					</div>
+					<!-- 添加数据————添加商铺 -->
+					<div id="data">
+						<article class="box-container" id="box">
+							<div class="top1">
+								<p><span style="font-size: 13px;color: #48576a;">店铺名称</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1"></p>
+								<p><span style="font-size: 13px;color: #48576a;">详细地址</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1">
+									<p class="p1">当前城市：介休</p>
+								</p>
+								<p><span style="font-size: 13px;color: #48576a;">联系电话</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1"></p>
+								<p><span style="font-size: 13px;color: #48576a;">店铺简介</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1"></p>
+								<p><span style="font-size: 13px;color: #48576a;">店铺标语</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1"></p>
+								<p><span style="font-size: 13px;color: #48576a;">店铺分类</span>&nbsp;&nbsp;&nbsp;<input type="text" placeholder=""
+									 class="input1"></p>
+								<div class="anniu" style="width: 462px;margin-top: 18px;"><span style="font-size: 13px;color: #48576a;float: left;margin-left: 2px;">店铺特点</span>&nbsp;&nbsp;&nbsp;<ul>
+										<li class="mui-table-view-cell">
+											<span>品牌保证</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+										<li class="mui-table-view-cell">
+											<span>蜂鸟传送</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+										<li class="mui-table-view-cell">
+											<span>新开店铺</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+										<li class="mui-table-view-cell">
+											<span>外卖保</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+										<li class="mui-table-view-cell">
+											<span>准时达</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+										<li class="mui-table-view-cell">
+											<span>开发票</span>
+											<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+												<div class="mui-switch-handle"></div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="pei" style="margin-top: 18px;clear: both;height: 50px;">
+									<span style="float: left;margin-left: 9px;font-size: 14px;">配送费</span>
+									<div class="flw_nei" style="margin-left: 15px;display: inline-block;float: left;height: 40px;border-radius: 5px;">
+										<em class="jian">-</em>
+										<input type="text" value="1" class="num" />
+										<em class="add">+</em>
+									</div>
+								</div>
+								<div class="qi" style="margin-top: 18px;height: 50px;">
+									<span style="float: left;margin-left: 9px;font-size: 14px;">起送价</span>
+									<div class="flw_nei" style="margin-left: 15px;display: inline-block;float: left;height: 40px;border-radius: 5px;">
+										<em class="jian">-</em>
+										<input type="text" value="1" class="num" />
+										<em class="add">+</em>
+									</div>
+								</div>
+								<div style="margin-top: 18px;height: 65px;">
+									<span style="float: left;margin-left: -4px;font-size: 14px;">营业时间</span>
+									<select>
+										<option value="disabled selected hidden">起始时间</option>
+										<option value="05">05：30</option>
+										<option value="05">05：45</option>
+										<option value="06">06：00</option>
+										<option value="06">06：15</option>
+										<option value="06">06：30</option>
+										<option value="06">06：45</option>
+									</select>
+									<select>
+										<option value="disabled selected hidden">结束时间</option>
+										<option value="05">05：30</option>
+										<option value="05">05：45</option>
+										<option value="06">06：00</option>
+										<option value="06">06：15</option>
+										<option value="06">06：30</option>
+										<option value="06">06：45</option>
+									</select>
+								</div>
+								<div class="article">
+									<div class="item">
+										<span style="margin-left: -125px;font-size:14px;">上传店铺头像</span>
+										<img class="addImg" onclick="clickImg(this);" src="img/addImg.png" />
+										<input name="url" type="file" class="upload_input" onchange="change(this)" />
+										<div class="preBlock">
+											<img class="preview" id="preview" alt="" name="pic" width="190" height="190" />
+										</div>
+										<img class="delete" onclick="deleteImg(this)" src="img/delete.png" />
+									</div>
+									<div class="item">
+										<span style="margin-left: -125px;font-size:14px;">上传营业执照</span>
+										<img class="icon1 addImg" onclick="clickImg(this);" src="img/addImg.png" />
+										<input name="url" type="file" class="upload_input" onchange="change(this)" />
+										<div class="preBlock">
+											<img class="preview" alt="" name="pic" width="190" height="190" />
+										</div>
+										<img class="delete" onclick="deleteImg(this)" src="img/delete.png" />
+									</div>
+									<div class="item">
+										<span style="margin-left: -125px;font-size:14px;float: left;">上传餐饮服务<br>许可证</span>
+										<img class="icon1 addImg" onclick="clickImg(this);" src="img/addImg.png" />
+										<input name="url" type="file" class="upload_input" onchange="change(this)" />
+										<div class="preBlock">
+											<img class="preview" alt="" name="pic" width="190" height="190" />
+										</div>
+										<img class="delete" onclick="deleteImg(this)" src="img/delete.png" />
+									</div>
+									<div style="clear: left;"></div>
+								</div>
+								<div style="margin-top: 18px;height: 50px;">
+									<span style="float: left;margin-left: 16px;font-size: 14px;">优惠活动</span>
+									<select>
+										<option value="man">满减优惠</option>
+										<option value="man">优惠大酬宾</option>
+										<option value="man">新用户立减</option>
+										<option value="man">进店领券</option>
+									</select>
+								</div>
+								<div id="wrapper">
+									<div id="top">
+										<div class="cell">活动标题</div>
+										<div class="cell">活动名称</div>
+										<div class="cell">活动详情</div>
+										<div class="cell">操作</div>
+									</div>
+									<section>
+										<div class="data-container">
+											<div id="top" style="background-color: #fff;">
+												<div class="cell">减</div>
+												<div class="cell">满减优惠</div>
+												<div class="cell">满30减5，满60减8</div>
+												<div class="cell"><button id="button">删除</button></div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<div style="text-align: center;margin-top: 15px;">
+									<button style="background-color: #0062CC;color: #fff;border: none;">立即创建</button>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+		<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="../tian/libs/js/index.js"></script>
+		<script src="../tian/js/y.js"></script>
+		<script src="../tian/dist/pagination.js"></script>
+		<script src="../tian/js/mui.min.js"></script>
+		<script type="text/javascript" src="../tian/js/jquery.spinner.js"></script>
+	</body>
+</html>
+<script>
+	window.jQuery || document.write('<script src="../tian/js/jquery-1.10.2.min.js"><\/script>')
+</script>
+<script type="text/javascript">
+	// 退出登录
+	var tui = $("#tui")
+	document.getElementById("tui").addEventListener('click', function() {
+		$.ajax({
+			type: 'GET',
+			url: 'https://elm.cangdu.org/admin/singout',
+			dataType: 'json',
+			success: function(data) {
+				console.log(data)
+				if (data.success) {
+					location.href = 'denglu.html';
+				} else {
+
+				}
+			}
+		});
+	});
+	mui.init({
+		swipeBack: true //启用右滑关闭功能
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//加的效果
+		$(".add").click(function() {
+			var n = $(this).prev().val();
+			var num = parseInt(n) + 1;
+			if (num == 0) {
+				return;
+			}
+			$(this).prev().val(num);
+		});
+		//减的效果
+		$(".jian").click(function() {
+			var n = $(this).next().val();
+			var num = parseInt(n) - 1;
+			if (num == 0) {
+				return
+			}
+			$(this).next().val(num);
+		});
+	})
+</script>
+<script type="text/javascript">
+			//点击
+			var clickImg = function(obj) {
+				$(obj).parent().find('.upload_input').click();
+			}
+			//删除
+			var deleteImg = function(obj) {
+				$(obj).parent().find('input').val('');
+				$(obj).parent().find('img.preview').attr("src", "");
+				//IE9以下
+				$(obj).parent().find('img.preview').css("filter", "");
+				$(obj).hide();
+				$(obj).parent().find('.addImg').show();
+			}
+			//选择图片
+			function change(file) {
+				//预览
+				var pic = $(file).parent().find(".preview");
+				//添加按钮
+				var addImg = $(file).parent().find(".addImg");
+				//删除按钮
+				var deleteImg = $(file).parent().find(".delete");
+
+				var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+
+				// gif在IE浏览器暂时无法显示
+				if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+					if (ext != '') {
+						alert("图片的格式必须为png或者jpg或者jpeg格式！");
+					}
+					return;
+				}
+				//判断IE版本
+				var isIE = navigator.userAgent.match(/MSIE/) != null,
+					isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+				isIE10 = navigator.userAgent.match(/MSIE 10.0/) != null;
+				if (isIE && !isIE10) {
+					file.select();
+					var reallocalpath = document.selection.createRange().text;
+					// IE6浏览器设置img的src为本地路径可以直接显示图片
+					if (isIE6) {
+						pic.attr("src", reallocalpath);
+					} else {
+						// 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现             
+						pic.css("filter", "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src=\"" +
+							reallocalpath + "\")");
+						// 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+						pic.attr('src', 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+					}
+					addImg.hide();
+					deleteImg.show();
+				} else {
+					html5Reader(file, pic, addImg, deleteImg);
+				}
+			}
+			//H5渲染
+			function html5Reader(file, pic, addImg, deleteImg) {
+				var file = file.files[0];
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(e) {
+					pic.attr("src", this.result);
+				}
+				addImg.hide();
+				deleteImg.show();
+			}
+		</script>
+<!-- 删除 -->
+<script type="text/javascript">
+		console.log($("#button"))
+	$("#button").onclick = function() {
+			this.removeChild(this)
+		}
+</script>

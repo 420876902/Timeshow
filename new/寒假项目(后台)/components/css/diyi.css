@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.fan-head {
+	width: 100%;
+	height: 60px;
+	background: #eff2f7;
+}
+
+.fan-right {
+	width: 40px;
+	height: 40px;
+	float: right;
+	margin-top: -52px;
+	margin-right: 34px;
+}
+
+.fan-right img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.fan-right ul {
+	width: 109px;
+	padding: 5px 5px 3px 5px;
+	list-style: none;
+	text-align: center;
+	margin-left: -40px;
+	background: #ffffff;
+}
+
+.fan-left {
+	line-height: 60px;
+	margin-left: 15px;
+}
+
+.xianShi {
+	display: none;
+}
+
+.fan-right ul li {
+	line-height: 40px;
+	text-decoration: none;
+}
+
+.fan-right ul li:hover {
+	background: #eff2f7;
+}
+
+.fan-right ul li a {
+	text-decoration: none;
+}
+
+.fan-right:hover .xianShi {
+	display: block;
+}
+
+.fan-center h3 {
+	color: black;
+	font-size: 30px;
+	text-align: center;
+	font-weight: 400;
+	line-height: 80px;
+}
+
+.fan-center h4 {
+	display: inline-block;
+	margin: 10px 20px;
+	padding: 10px;
+}
+
+.fan-center .dr {
+	color: white;
+	border-radius: 10px;
+	background-color: orange;
+	font-size: 20px;
+	font-weight: 400;
+	width: 110px;
+}
+
+.fan-center .zsj {
+	width: 110px;
+	color: white;
+	border-radius: 10px;
+	background-color: royalblue;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+.fan-center span {
+	border-radius: 10px;
+	width: 120px;
+	background-color: lightgray;
+	margin: 10px 20px;
+	padding: 10px;
+}
+
+body,
+html {
+	height: 100%;
+}

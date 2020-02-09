@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="../js/mui.min.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet" />
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+    <style>
+        nav img {
+            width: 1.2rem;
+            color: gray;
+        }
+        
+        .mui-but {
+            width: 100%;
+            padding: 15px 10px;
+        }
+        
+        .mui-but>div {
+            width: 25%;
+            float: left;
+            padding: 0 10px;
+            height: 80px;
+            font-size: 0.7rem;
+            text-align: center;
+            font-family: "微软雅黑";
+            color: gray;
+            /*border:1px solid red;*/
+        }
+        
+        .mui-slider-indicator .mui-active {
+            background-color: #3190e8!important;
+        }
+        
+        .fjsj .mui-table-view li .mui-media-body .mui-ellipsis {
+            font-size: 11px;
+        }
+        
+        .search_from {
+            background-color: #fff;
+            padding-top: 3.5rem;
+            display: flex;
+        }
+        
+        #inp {
+            flex: 4;
+            border: .025rem solid #e4e4e4;
+            font-size: .65rem;
+            color: #333;
+            border-radius: .125rem;
+            background-color: #f2f2f2;
+            font-weight: 700;
+        }
+        
+        #btn {
+            width: 20%;
+            height: 34px;
+        }
+        
+        #merchant {
+            font-size: .6rem;
+            line-height: 2rem;
+            text-indent: .5rem;
+            font-weight: 700;
+            color: #666;
+        }
+        
+        #merchant {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;position: fixed;">
+        <span id="fh" class="mui-icon mui-icon-back" style="font-size:30px!important;color:white;"></span i>
+        <h1 class="mui-title" style="font-size:20px!important;color:white;">订单列表</h1>
+    </header>
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item">
+            <span class="mui-icon"><img src="../images/waimai.svg" alt="" /></span>
+        <span class="mui-tab-label">外卖</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon"><img src="../images/sousuo.svg" alt="" /></span>
+            <span class="mui-tab-label">搜索</span>
+        </a>
+        <a class="mui-tab-item mui-active">
+            <span class="mui-icon"><img src="../images/dingdan1.svg" alt="" /></span>
+            <span class="mui-tab-label">订单</span>
+        </a>
+        <a class="mui-tab-item">
+            <span class="mui-icon"><img src="../images/wode.svg" alt="" /></span>
+            <span class="mui-tab-label">我的</span>
+        </a>
+        </nav>
+
+        <!-- 订单列表 -->
+
+</body>
+
+</html>
+<script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../js/network.js"></script>
+<script type="text/javascript">
+    var jwds = window.location.search;
+    var jwd = jwds.slice(5);
+    console.log(jwd);
+    $('nav a:eq(0)').on("tap", function() {
+        location.href = "../li/index.html";
+    })
+    $('#fh').on("tap", function() {
+        location.href = "../li/index.html";
+    })
+    $("#inp").on("input", function() {
+        var cont = $(this).val();
+        if ($("#inp").val() != '') {
+            $("#merchant").css("display", "block");
+            $.ajax({
+                url: "https://elm.cangdu.org/v4/restaurants?geohash=" + jwd + "&keyword=" + cont,
+                type: "get",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        $('<li><img class="tupian" src="' + data.banners[0].pic + '"></img></li>').appendTo('#merchant ul');
+
+                    }
+                }
+            })
+        } else {
+            $("#merchant").css("display", "none");
+        }
+
+
+    })
+</script>
