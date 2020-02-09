@@ -14,6 +14,14 @@ function getDataByGet(url,data,callback){
 
 
 
-//function getDataByPost(url,data){
-//
-//}
+
+function getDataByPost(url,data,callback){
+	mui.ajax(baseUrl+url,{
+		data:data,
+		dataType:"json",
+		type:"post",
+		success:function(data){
+		    callback(data);
+		}
+    })
+}
