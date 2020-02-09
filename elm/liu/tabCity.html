@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+    <link href="../css/mui.css" rel="stylesheet" />
+
     <link href="../css/mui.min.css" rel="stylesheet" />
+
 
     <style>
         * {
@@ -26,13 +30,13 @@
         #text {
             color: white;
             font-size: 1.5rem;
-            padding-left: 7.5rem;
+            padding-left: 6.5rem;
         }
         
         #tab {
             color: white;
-            font-size: 1rem;
-            padding-left: 5.5rem;
+            font-size: 0.7rem;
+            padding-left: 4.5rem;
         }
         
         .cont {
@@ -68,54 +72,110 @@
             padding-left: .5rem;
             font: .475rem/.8rem Microsoft YaHei;
         }
+        
+        #btn {
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            background-color: #3190e8;
+            color: white;
+        }
+        
+        .history {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-	 <header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
-	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="background: #3190e8;color:white;"></a>
-        <h1 class="mui-title text" style="font-size:20px!important;color:white;"></h1>
-        <span class="mui-pull-right" style="line-height: 50px;">切换城市</span>
-    </header>
-    <div class="mui-content" style="padding-top:0">
-    	<form action="" class="cityForm">
-        <div class="cont">
-            <input type="search" name="city" id="" placeholder="输入学校、商务楼、地址">
-        </div>
-        <div class="btn">
-            <input type="submit" name="submit" id="" value="提交">
-        </div>
-    </form>
-
-    <header class="lishi">搜索历史</header>
+    <div class="top">
+        <span id="fh" style="color:white;font-size: 40px;" class="mui-icon mui-icon-back"></span>
+        <span id="text"></span>
+        <span id="tab">切换城市</span>
     </div>
-    
+    <form action="" class="cityForm">
+        <div class="cont">
+            <input type="search" name="city" id="inp" placeholder="输入学校、商务楼、地址">
+            <div id="btn">提交</div>
+            <header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
+                <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="background: #3190e8;color:white;"></a>
+                <h1 class="mui-title text" style="font-size:20px!important;color:white;"></h1>
+                <span class="mui-pull-right" style="line-height: 50px;">切换城市</span>
+            </header>
 
-
-    <script src="../js/jquery-1.11.3.js"></script>
-    <script src="../js/mui.js"></script>
-    <script src="../js/network.js"></script>
-    <script type="text/javascript">
-        var ids = window.location.search;
-        var id = ids.substring(4);
-        console.log(id);
-        
-		 //定位地址
-	    // https://elm.cangdu.org/v1/cities?id
-	    var data1 = {
-	        
-	    }
-	    getDataByGet("/v1/cities/" + id,data1,function(data){
-	        console.log(data);
-	        $('.text').text(data.name);
-	    })
+            <div class="history" style="margin: 10px;">
+                <header class="lishi">搜索历史</header>
+                <div class="historyList">
+                    <ul id="historyList" class="clearfix">
+                    </ul>
+                </div>
+            </div>
+            <ul class="getpois_ul" id="kj"></ul>
 
 
 
-        $('#fh').on('tap', function() {
-            location.href = 'city.html';
-        })
-    </script>
+            <script src="../js/jquery-1.11.3.js"></script>
+            <script src="../js/mui.js"></script>
+            <script src="../js/city.js"></script>
+
+            <script type="text/javascript">
+                var ids = window.location.search;
+                var id = ids.substring(4);
+                console.log(id);
+
+                getDataByGet("/" + id, function(data) {
+                    console.log(data);
+                    $('#text').text(data.name);
+                })
+
+
+
+                $("#inp").on("input", function() {
+                    var cont = $(this).val();
+                    $.ajax({
+                        url: "https://elm.cangdu.org/v1/pois?city_id=" + id + "&keyword=" + cont + "&type=search",
+                        type: "get",
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+                            if ($("#inp").val() != '') {
+                                $("#kj").css("display", "block");
+                                $('#kj').html('');
+                                for (var i = 0; i < data.length; i++) {
+                                    $('<li jwd="' + data[i].geohash + '"><h4>' + data[i].name + '</h4><p>' + data[i].address + '</p></li>').appendTo('#kj');
+
+                                }
+                                $('#kj li').on('tap', function() {
+                                    var jwd = $(this).attr('jwd');
+                                    location.href = "../li/index.html?jwd=" + jwd;
+                                })
+
+                            } else if ($("#inp").val() == '') {
+                                $('#kj').css("display", "none");
+
+                            }
+                        }
+                    })
+
+                })
+
+
+                //定位地址
+                // https://elm.cangdu.org/v1/cities?id
+
+                getDataByGet("/v1/cities/" + id, function(data) {
+                    console.log(data);
+                    $('.text').text(data.name);
+                })
+
+
+
+
+                $('#fh').on('tap', function() {
+                    location.href = 'city.html';
+                })
+            </script>
 </body>
 
 </html>

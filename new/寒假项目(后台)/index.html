@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+    <div id="" class="flw_head">
+        <div class="flw_head flw_neir">
+            <section class="flw_box">
+                <div class="flw_box1">
+                    <p>elm后台管理系统</p>
+                </div>
+                <!-- <form action=""> -->
+                   <div class="flw_but">
+                       <input type="text" placeholder="用户名" class="flw_int" id="flw_int1">
+                       <div class="flw_ero" id="flw_ero1">请输入用户名
+                        </div>
+                   </div>
+                   <div class="flw_but">
+                        <input type="text" placeholder="密码" class="flw_int" id="flw_int2">
+                        <div class="flw_ero" id="flw_ero2">请输入密码
+                            </div>
+                   </div>
+                   <div class="flw_but">
+                        <button class="flw_neir1" id="flw_neir1">
+                            <span>登陆</span>
+                        </button>
+                   </div>
+                <!-- </form>  -->
+                <p class="flw_hit">温馨提示：</p>
+                <p class="flw_hit">未登陆过的新用户，自动注册</p>
+                <p class="flw_hit">注册过的用户可凭账号密码登陆</p>
+            </section>
+        </div>
+    </div>
+    <div class="flw_fot" id="flw_fot"></div>
+    <script src="js/jquery-1.9.1.js"></script>
+    <script>
+        
+        //判断登录状态
+        if(window.localStorage.length>0){
+            window.location.href = "home/main.html";
+        }else{
+            $("#flw_int1").val("flw");
+            $("#flw_int2").val(123);
+        }
+
+        function fn1(a,b){
+            $(a).blur(function(){
+                if($(a).val() == ""){
+                    $(b).css({"display":"block"});
+                    $(a).css({"border-color": "#ff4949"});
+                }else if(!($(a).val() == "")){
+                    $(b).css({"display":"none"});
+                    $(a).css({"border-color": ""});
+                    
+                }
+            });
+        }
+        fn1("#flw_int1","#flw_ero1");
+        fn1("#flw_int2","#flw_ero2");
+        
+        
+        $("#flw_neir1").on("click",function(){
+            var flw_int1 = $("#flw_int1").val();
+            var flw_int2 = $("#flw_int2").val();
+            console.log(flw_int1,flw_int2)
+            $.ajax({
+                type: 'POST',
+                url: 'https://elm.cangdu.org/admin/login',
+                data:{
+                    user_name:flw_int1,
+                    password:flw_int2
+                },
+                dataType: 'json',
+                success: function(data){
+                    console.log(data.success);
+                    if(data.status == 0){
+                        // alert(data.message)
+                        $("#flw_fot").css({"display":"block"});
+                        $("#flw_fot").html(data.message)
+                        setTimeout(function(){
+                            $("#flw_fot").css({"display":"none"});
+                        },3000);
+                    }else if(data.status == 1){
+                        // alert(data.success)
+                        $("#flw_fot").css({"display":"block"});
+                        $("#flw_fot").html(data.success)
+                        setTimeout(function(){
+                            $("#yangfanxian").css({"display":"none"});
+                        },3000);
+                        localStorage.setItem(flw_int1,flw_int2);
+                        var baocun = localStorage.getItem(flw_int1,flw_int2);
+                        console.log(baocun);
+                        console.log(flw_int1,flw_int2)
+                        window.location.href = "home/main.html?user_name="+flw_int1+"&password="+flw_int2;
+                    }
+                },
+                error:function(res){
+                    console.log(res)
+                }
+            });
+        })
+    </script>
+</body>
+</html>

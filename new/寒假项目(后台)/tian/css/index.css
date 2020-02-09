@@ -1,0 +1,126 @@
+body,html{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-right: 5px;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+/* 修改 */
+
+.iconfont{
+    font-size: 20px;
+    color: #bfcbd9;
+}
+
+.content{
+    float: left;
+    width:100%;
+    height: 100%;
+    overflow: auto;
+}
+.he_header{
+    height: 60px;
+    background-color: #eff2f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+}
+.hr_text{
+    font-size: 13px;
+    line-height: 1;
+}
+.hr_item{
+    float: left;
+}
+.hr_txt{
+    color: #97a8be;
+    cursor: text;
+}
+.hr_user{
+    color: #48576a;
+    font-size: 14px;
+    display: inline-block;
+    position: relative;
+}
+.hr_logo{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-right: 37px;
+}
+.hr_menu{
+    min-width: 100px;
+    margin: 5px 0;
+    border: 1px solid #d1dbe5;
+    box-shadow: 0 2px 4px rgba(0,0,0,.12), 0 0 6px rgba(0,0,0,.12);
+    padding: 6px 0;
+    z-index: 10;
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    background-color: #fff;
+}
+.hr_list{
+    text-align: center;
+    list-style: none;
+    line-height: 36px;
+    padding: 0 10px;
+    margin: 0;
+    cursor: pointer;
+}
+.statistics{
+    padding: 20px;
+    margin-bottom: 40px;
+}
+.statistics .s_title{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+.s_day{
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 10px;
+
+}
+.statistics .s_list{
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    border-radius: 6px;
+    background: #e5e9f2;
+    float: left;
+    width: 17%;
+    margin-left: 10px;
+    padding: 4px 0;
+}
+.statistics .s_head{
+    background: #ff9800;
+}
+.statistics .s_list .head{
+    border-radius: 6px;
+    font-size: 22px;
+    /* padding: 4px 0; */
+    color: #fff;
+    display: inline-block;
+}
+.statistics .s_list .s_num{
+    color: #333;
+    font-size: 26px;
+}
+#statistics{
+	overflow:hidden;
+}

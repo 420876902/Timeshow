@@ -1,0 +1,241 @@
+			#box {
+				background-color: #fff;
+			}
+
+			.box-container {
+				margin: 0 auto;
+				overflow: hidden;
+			}
+
+			.top1 {
+				width: 900px;
+				margin: 0 auto;
+			}
+
+			.top1 p {
+				margin-top: 20px;
+			}
+
+			.top1 .p1 {
+				text-align: left;
+				font-size: 13px;
+				color: #000000;
+				margin-left: 93px;
+				margin-top: -2px;
+			}
+
+			.input1 {
+				width: 502px;
+				height: 36px;
+				border-radius: 4px;
+				border: 1px solid #bfcbd9;
+			}
+
+			input {
+				width: 82% !important;
+			}
+
+			.mui-switch .mui-switch-handle {
+				width: 29px;
+				height: 24px;
+			}
+
+			.mui-switch-mini {
+				width: 47px;
+				height: 26px;
+			}
+
+			li {
+				list-style: none;
+			}
+
+			.mui-table-view-cell {
+				padding: 14px 15px;
+				float: left;
+				margin-left: 10px;
+				overflow: visible !important;
+			}
+
+			.mui-table-view-cell:after {
+				background-color: #fff !important;
+			}
+
+			.anniu span {
+				font-size: 14px;
+				margin-left: 19px;
+			}
+
+			.mui-table-view-cell>.mui-badge,
+			.mui-table-view-cell>.mui-btn,
+			.mui-table-view-cell>.mui-switch,
+			.mui-table-view-cell>a>.mui-badge,
+			.mui-table-view-cell>a>.mui-btn,
+			.mui-table-view-cell>a>.mui-switch {
+				right: -36px;
+			}
+
+			.anniu ul {
+				margin-left: 21px;
+				display: inline-block;
+				margin-top: -36px;
+			}
+
+			.flw_nei {
+				border: 1px solid #dbdbdb;
+				width: 110px;
+				line-height: 34px;
+				overflow: hidden;
+			}
+
+			.flw_nei em {
+				display: block;
+				height: 40px;
+				width: 26px;
+				float: left;
+				color: #7A7979;
+				border-right: 1px solid #dbdbdb;
+				text-align: center;
+				cursor: pointer;
+			}
+
+			.flw_nei .num {
+				display: block;
+				float: left;
+				text-align: center;
+				width: 52px !important;
+				font-style: normal;
+				font-size: 14px;
+				border: 0;
+			}
+
+			.flw_nei em.add {
+				float: right;
+				border-right: 0;
+				border-left: 1px solid #dbdbdb;
+			}
+
+			select {
+				border: 1px solid rgba(0, 0, 0, .2) !important;
+				width: 200px;
+				height: 40px;
+				float: left;
+				margin-left: 10px;
+			}
+
+			#wrapper {
+				width: 786px;
+				text-align: center;
+				border: 1px solid #dfe6ec;
+			}
+
+			.data-container ul {
+				padding: 0;
+				margin: 0;
+			}
+
+			.data-container li {
+				margin-bottom: 5px;
+				padding: 5px 10px;
+				border-bottom: 1px solid #dfe6ec;
+				color: #000;
+			}
+
+			#box {
+				background-color: #fff;
+			}
+
+			#top .cell {
+				width: 200px;
+				float: left;
+				padding-left: 10px;
+			}
+
+			#top {
+				height: 40px;
+				font-size: 14px;
+				color: #000000;
+				font-weight: bold;
+				background-color: #EEF1F6;
+				padding-top: 10px;
+			}
+
+			#top .cell:first-child {
+				width: 100px;
+			}
+
+			#top .cell:last-child {
+				float: right;
+				margin-top: -1px;
+				margin-right: -38px;
+			}
+
+			.data-container #top .cell {
+				font-weight: normal;
+			}
+
+			.data-container #top .cell button {
+				background-color: red;
+				font-size: 13px;
+				border: none;
+				margin-top: -5px;
+				color: #fff;
+			}
+			.article {
+				padding: 20px;
+				min-height: 230px;
+			}
+			
+			.item {
+				width: 120px;
+				height: 120px;
+				position: relative;
+				margin: 20px 74px;
+			}
+			
+			.addImg {
+				width: 120px;
+				height: 120px;
+				position: absolute;
+				left: -31px;
+				top: 0;
+				z-index: 2;
+				cursor: pointer;
+			}
+			
+			.preview,
+			.preBlock {
+				position: absolute;
+				display: block;
+				width: 120px;
+				height: 120px;
+				left: -16px;
+				top: 0;
+			}
+			
+			.delete {
+				width: 30px;
+				position: absolute;
+				right: -30px;
+				top: -15px;
+				cursor: pointer;
+				display: none;
+			}
+			
+			.preBlock img {
+				display: block;
+				width: 120px;
+				height: 120px;
+			}
+			
+			.upload_input {
+				display: block;
+				width: 0;
+				height: 0;
+				-webkit-opacity: 0.0;
+				-moz-opacity: 0.0;
+				-khtml-opacity: 0.0;
+				opacity: .0;
+				filter: alpha(opacity=0);
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+				filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+			}

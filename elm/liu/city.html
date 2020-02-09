@@ -133,90 +133,72 @@
 
 <body>
     <header class="mui-bar mui-bar-nav" id="C-top">
-        <h1 class="C-text" style="font-size:20px!important;color:white;">ele.me</h1>
+        <h1 class="C-text">ele.me</h1>
         <span class="C-dl"><img src="../images/dl.svg" alt="" /></span>
     </header>
-    <div class="mui-content" style="padding-top:0">
-        <div class="city">
-            <span>当前定位城市：</span>
-            <span>定位不准时，请在城市列表中选择</span>
-        </div>
-        <div class="tabCity">
-            <span class="cityType">北京</span>
-            <span style="float: right;line-height: 2.8rem;" class="mui-icon mui-icon-forward"></span>
-        </div>
-        <!-- 热门城市 -->
-        <section class="remen">
-            <h4 class="title">热门城市</h4>
-            <ul class="cityLis">
-
-            </ul>
-        </section>
-        
-	    <!-- 所有城市 -->
-	    <section class="groupCity">
-	        <ul id="suo">
-	
-	        </ul>
-	    </section>
+    <div class="city">
+        <span>当前定位城市：</span>
+        <span>定位不准时，请在城市列表中选择</span>
     </div>
-    
+    <div class="tabCity">
+        <span class="cityType">北京</span>
+        <span style="float: right;line-height: 2.8rem;" class="mui-icon mui-icon-forward"></span>
+    </div>
+    <!-- 热门城市 -->
+    <section class="remen">
+        <h4 class="title">热门城市</h4>
+        <ul class="cityLis">
+
+        </ul>
+    </section>
+    <!-- 所有城市 -->
+    <section class="groupCity">
+        <ul id="suo">
+
+        </ul>
+    </section>
 </body>
-<script src="../js/mui.min.js"></script>
-<script src="../js/network.js"></script>
+<script src="../js/mui.js"></script>
+<script src="../js/city.js"></script>
 <script src="../js/jquery-1.11.3.js"></script>
 <link href="../css/mui.min.css" rel="stylesheet" />
 <script type="text/javascript" charset="utf-8">
-    mui.init();
-    //定位地址
-    // https://elm.cangdu.org/v1/cities?type=guess
-    // https://elm.cangdu.org
-    var data1 = {
-        type:"guess"
-    }
-    getDataByGet("/v1/cities",data1,function(data){
-        console.log(data);
-        $('.tabCity .cityType').html(data.name);
-    })
+    // mui.init();
     // 热门城市
-       var data2={
-           type:"hot"
-       }
-       getDataByGet("/v1/cities",data2, function(data) {
-           console.log(data);
-           for (var i = 0; i < data.length; i++) {
-               $('<li id="' + data[i].id + '">' + data[i].name + '</li>').appendTo('.remen .cityLis');
 
-           }
-           $('.remen .cityLis li').on('tap', function() {
-               var id = $(this).attr('id');
-               location.href = "tabCity.html?id=" + id;
+    getDataByGet("?type=hot", function(data) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            $('<li id="' + data[i].id + '">' + data[i].name + '</li>').appendTo('.remen .cityLis');
 
-           })
-       });
+        }
+        $('.remen .cityLis li').on('tap', function() {
+            var id = $(this).attr('id');
+            location.href = "tabCity.html?id=" + id;
+
+        })
+    });
     // 所有城市
-       var data3 = {
-           type:"group"
-       }
-       getDataByGet("/v1/cities",data3, function(res) {
-           console.log(res);
-           var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-           for (var i = 0; i < arr.length; i++) {
-               $('<li class="textBox"><span>' + arr[i] + '（按字母排序）</span></li>').appendTo('.groupCity #suo');
-           }
-           $('<ul class="cityBox"></ul>').appendTo('.groupCity #suo li');
+    getDataByGet("?type=group", function(res) {
+        console.log(res);
+        var arr = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        for (var i = 0; i < arr.length; i++) {
+            $('<li class="textBox"><span>' + arr[i] + '（按字母排序）</span></li>').appendTo('.groupCity #suo');
+        }
+        $('<ul class="cityBox"></ul>').appendTo('.groupCity #suo li');
 
-           for (var key in res) {
+        for (var key in res) {
 
-               var keys = res[key];
-               console.log(keys);
-//                for (var i = 0; i < keys.length; i++) {
-//                    console.log(keys[0].length);
-//                       $('<li id="' + keys[0].id + '">' + keys[0].name + '</li>').appendTo('.groupCity #suo li .cityBox:eq(4)');
-//                }
-           }
+            var keys = res[key];
+            console.log(keys[i]);
+            // for (var i = 0; i < keys.length; i++) {
+            //     console.log(keys[0].length);
+            //     // $('<li id="' + keys[0].id + '">' + keys[0].name + '</li>').appendTo('.groupCity #suo li .cityBox:eq(4)');
+            // }
+        }
 
-       });
+    });
+
 </script>
 
 </html>

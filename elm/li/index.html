@@ -41,7 +41,7 @@
 <body>
 	<header class="mui-bar mui-bar-nav" style="background: #3190e8;color:white;">
 		<span class="mui-icon mui-icon-search mui-pull-left" style="font-size:30px!important;color:white;font-weight:bold;"></span>
-	    <h1 class="mui-title" style="font-size:20px!important;color:white;font-weight:bold;">标题</h1>
+	    <h1 class="mui-title" style="font-size:20px!important;color:white;font-weight:bold;" id="txt">标题</h1>
 		<span class="mui-icon mui-pull-right" style="height: 25px;width: 25px;margin: 10px;font-weight:bold;font-size:30px!important;color:white;background: url(../images/dl.svg);background-size: 25px;"></span>	    
 	</header>
 	<nav class="mui-bar mui-bar-tab">
@@ -115,11 +115,33 @@
 <script type="text/javascript" src="../js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="../js/network.js"></script>
 <script type="text/javascript">
+$('#txt').on("tap", function() {
+        location.href = "../liu/tabCity.html";
+    })
+	var jwds = window.location.search;
+    var jwd = jwds.slice(5);
+	var lat = jwd.slice(10);
+	var lon = jwd.substring(0,9);
+    console.log(jwd);
+    
+	window.localStorage.setItem("lat",lat);
+	window.localStorage.setItem("lon",lon);
+	console.log(window.localStorage["lon"]);
+    $.ajax({
+        url: "https://elm.cangdu.org/v2/pois/" + jwd,
+        type: "get",
+        dataType: "json",
+        success: function(data) {
+            // console.log(data);
+            $("#txt").text(data.name);
+        }
+
+    })
 	$('nav a:eq(0)').on("tap",function(){
 		location.href="index.html";
 	})
 	$('nav a:eq(1)').on("tap",function(){
-		location.href="index.html";
+		location.href="../liu/sousuo.html";
 	})
 	$('nav a:eq(2)').on("tap",function(){
 		location.href="index.html";
@@ -160,8 +182,8 @@
 
 	//	附近商家
 	var datas = {
-		latitude:37.687019,
-		longitude:112.752777,
+		latitude:lat,
+		longitude:lon,
 	}
 	getDataByGet("/shopping/restaurants",datas,function(data){
 //		console.log(data);
@@ -169,7 +191,7 @@
 			$('<li class="mui-table-view-cell mui-media" idd="'
 			+data[i].id+'">'
 	        +'<a href="javascript:;">'
-            +'<img class="mui-pull-left" style="width:18%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
+            +'<img class="mui-pull-left" style="width:18%!important;margin-right: 10px;" src="http://elm.cangdu.org/img/'
             +data[i].image_path
             +'" /><div class="mui-media-body" style="line-height: 25px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;">'
             +data[i].name

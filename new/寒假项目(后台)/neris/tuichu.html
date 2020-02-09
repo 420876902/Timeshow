@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="puit" >
+        退出
+    </div>
+</body>
+</html>
+
+<script src="../js/jquery-1.9.1.js"></script>
+<script>
+    $("<a href='javascript:;' target='v1'><span>退出</span></a>").appendTo("#puit")
+     $("#puit").click(function(){
+                if(window.localStorage.length>0){
+                    localStorage.clear();
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://elm.cangdu.org/admin/singout',
+                    dataType: 'json',
+                    success: function(data){
+                        console.log(data);
+                        if(data.status == 1){
+                            top.location.href="../index.html";
+                          
+                        }
+                    },
+                    error:function(res){
+                        console.log(res)
+                    }
+                });
+            })
+
+
+
+</script>

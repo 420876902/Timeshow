@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>扁平化可伸展导航</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+    <div class="flw_nav">
+        <div id="flw_test">
+
+            <ul class="flw_nav1">
+                <li> <a href="../neris/home.html" target="v1" class="flw_active"> <i class="icon_1"></i> <span class="">首页</span></a>
+
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">数据管理</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../neris/fengye.html" target="v1"><span>用户列表</span></a></li>
+                        <li><a href="../neris/shangjialiebiao.html" target="v1"><span>商家列表</span></a></li>
+                        <li><a href="../neris/shipingliebiao.html" target="v1"><span>食品列表</span></a></li>
+                        <li><a href="../neris/dingdanliebiao.html" target="v1"><span>订单列表</span></a></li>
+                        <li><a href="../neris/guanliyuan.html" target="v1"><span>管理员列表</span></a></li>
+                    </ul>
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">添加数据</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../neris/add.html" target="v1"><span>添加商铺</span></a></li>
+                        <li><a href="javascript:;" target="v1"><span>添加商品</span></a></li>
+                    </ul>
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">图标</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../components/tubiao.html" target="v1"><span>用户分布</span></a></li>
+                    </ul>
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">编辑</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../components/wenbenbianji.html" target="v1"><span>文本编辑</span></a></li>
+                    </ul>
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">设置</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../components/guanliyuanxinxi.html" target="v1"><span>管理员设置</span></a></li>
+                    </ul>
+                </li>
+                <li> <a href="javascript:;" class="flw_active"> <i class="icon_2"></i> <span class="nav-text">说明</span>
+                        <span class="arrow"></span> </a>
+                    <ul class="sub-menu">
+                        <li><a href="../components/shuoming.html" target="v1"><span>说明</span></a></li>
+                   
+                    </ul>
+                </li>
+                <li id="puit"> <a href="../neris/tuichu.html" class="flw_active" target="v1"> <i class="icon_2"></i> <span class="nav-text">退出</span>
+                    <span class="arrow"></span> </a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+
+    <script>
+        $(function () {
+            // nav收缩展开
+            $('.flw_nav1 li a').on('click', function () {
+                var parent = $(this).parent().parent();//获取当前页签的父级的父级
+                var labeul = $(this).parent("li").find(">ul")
+                if ($(this).parent().hasClass('open') == false) {
+                    //展开未展开
+                    parent.find('ul').slideUp(300);
+                    parent.find("li").removeClass("open")
+                    parent.find('li a').removeClass("active").find(".arrow").removeClass("open")
+                    $(this).parent("li").addClass("open").find(labeul).slideDown(300);
+                    $(this).addClass("active").find(".arrow").addClass("open")
+                } else {
+                    $(this).parent("li").removeClass("open").find(labeul).slideUp(300);
+                    if ($(this).parent().find("ul").length > 0) {
+                        $(this).removeClass("active").find(".arrow").removeClass("open")
+                    } else {
+                        $(this).addClass("active")
+                    }
+                }
+
+            });
+
+           
+        });
+    </script>
+</body>
+
+</html>

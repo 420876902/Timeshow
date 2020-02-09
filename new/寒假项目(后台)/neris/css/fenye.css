@@ -1,0 +1,220 @@
+  * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #page {
+            margin: 20px auto;
+            color: #666;
+            display: block;
+            text-align: center;
+        }
+
+        #page li {
+            display: inline-block;
+            min-width: 30px;
+            height: 28px;
+            cursor: pointer;
+            color: #666;
+            font-size: 13px;
+            line-height: 28px;
+            background-color: #f9f9f9;
+            border: 1px solid #dce0e0;
+            text-align: center;
+            margin: 0 4px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .xl-nextPage,
+        .xl-prevPage {
+            width: 60px;
+            color: #0073A9;
+            height: 28px;
+        }
+
+        #page li.xl-disabled {
+            opacity: .5;
+            cursor: no-drop;
+        }
+
+        #page li.xl-disabled:hover {
+            background-color: #f9f9f9 !important;
+            border: 1px solid #dce0e0 !important;
+            color: #666 !important;
+        }
+
+        #page li.xl-active {
+            background-color: #0073A9;
+            border-color: #0073A9;
+            color: #FFF
+        }
+
+        #page li:hover {
+            background-color: #0073A9 !important;
+            border-color: #0073A9;
+            color: #FFF
+        }
+
+        #page li.xl-jumpText {
+            background-color: rgba(0, 0, 0, 0);
+            border-color: rgba(0, 0, 0, 0);
+            opacity: 1;
+        }
+
+        #page li.xl-jumpText:hover {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border-color: rgba(0, 0, 0, 0) !important;
+        }
+
+        #page li.xl-jumpButton {
+            padding: 0 5px;
+        }
+
+        #xlJumpNum {
+            width: 35px;
+            margin: 0 3px;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none !important;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        #to {
+            background: #eff2f7;
+
+        }
+
+        #to tr {
+            width: 100%;
+            height: 60px;
+
+
+
+        }
+
+        #to,
+        #neir {
+            width: 100%;
+        }
+
+        #neir .trArr {
+            width: 100%;
+            height: 40px;
+            background-color: #fff;
+
+
+        }
+
+        #to tr td,
+        #neir .trArr td {
+            overflow: hidden;
+            height: 40px;
+            padding-right: 25px;
+            line-height: 40px;
+            border-bottom: 1px solid #dfe6ec;
+
+
+        }
+
+        #to tr td {
+            height: 60px;
+            line-height: 60px;
+
+        }
+
+        #to tr td:nth-child(1),
+        #neir .trArr td:nth-child(1) {
+            width: 50px;
+            padding-left: 10px;
+        }
+
+        #to tr td:nth-child(2),
+        #neir .trArr td:nth-child(2) {
+            width: 210px;
+        }
+
+        #to tr td:nth-child(3),
+        #neir .trArr td:nth-child(3) {
+            width: 170px;
+        }
+
+        #to tr td:nth-child(4),
+        #neir .trArr td:nth-child(4) {
+            width: 32%;
+            padding-right: 19%;
+        }
+
+        .cente {
+            width: 90%;
+            margin: 15px auto;
+
+            border-top: 1px solid #dfe6ec;
+            border-left: 1px solid #dfe6ec;
+            border-right: 1px solid #dfe6ec;
+        }
+
+        .flw_head {
+            width: 100%;
+            height: 60px;
+            background: #eff2f7;
+        }
+
+        .flw_you {
+            width: 40px;
+            height: 40px;
+            float: right;
+            margin-top: -52px;
+            margin-right: 34px;
+
+
+        }
+
+        .flw_you img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+
+        }
+
+        .flw_you ul {
+            width: 109px;
+            padding: 5px 5px 3px 5px;
+            list-style: none;
+            text-align: center;
+            margin-left: -40px;
+            background: #ffffff;
+        }
+
+        .flw_zuo {
+            line-height: 60px;
+            margin-left: 15px;
+        }
+
+        .xian {
+            display: none;
+        }
+
+        .flw_you ul li {
+            line-height: 40px;
+            text-decoration: none;
+        }
+
+        .flw_you ul li:hover {
+            background: #eff2f7;
+        }
+
+        .flw_you ul li a {
+            text-decoration: none;
+        }
+
+        .flw_you:hover .xian {
+            display: block;
+        }

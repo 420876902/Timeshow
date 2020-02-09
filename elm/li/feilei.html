@@ -216,10 +216,13 @@
 			}
 		}
 	})
+	var lat = window.localStorage["lat"];
+	var lon = window.localStorage["lon"];
+	console.log(window.localStorage["lon"]);
 //	商家
 	var datas = {
-		latitude:37.687019,
-		longitude:112.752777,
+		latitude:lat,
+		longitude:lon,
 	}
 	fun()
 	function fun(){
@@ -230,7 +233,7 @@
 			$('<li class="mui-table-view-cell mui-media" idd="'
 			+data[i].id+'">'
 	        +'<a href="javascript:;">'
-            +'<img class="mui-pull-left" style="width:18%!important;margin-right: 10px;" src="//elm.cangdu.org/img/'
+            +'<img class="mui-pull-left" style="width:18%!important;margin-right: 10px;" src="http://elm.cangdu.org/img/'
             +data[i].image_path
             +'" /><div class="mui-media-body" style="line-height: 25px;"><p class="mui-ellipsis"><span class="mui-pull-left" style="font-size:18px;width:100px;overflow:hidden;color:black;font-weight:bold;">'
             +data[i].name

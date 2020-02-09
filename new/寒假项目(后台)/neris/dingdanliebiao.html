@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>分页</title>
+  <link rel="stylesheet" type="text/css" href="css/dingdan.css"/>
+</head>
+
+<body>
+    <div class="flw_head">
+        <div class="flw_zuo">
+            <span>
+                <a href="#">首页</a>/
+            </span>
+            <span>
+                <a href="#">数据管理</a>/
+            </span>
+            <span>
+                订单列表
+            </span>
+        </div>
+        <div class="flw_you">
+            <img class="box" src="./img/logo.jpg" alt="">
+            <ul class="xian">
+                <li><a href="">首页</a></li>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="cente">
+        <table id="to">
+            <tr>
+                <td>
+                    <div></div>
+                </td>
+                <td>食品名称</td>
+                <td>食品介绍</td>
+                <td>评分</td>
+
+
+            </tr>
+        </table>
+        <table id="neir">
+        </table>
+    </div>
+
+    <div id="page"></div>
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="./js/ajax.js"></script>
+    <script type="text/javascript" src="./js/pageGroup.js"></script>
+
+    <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+        var num = 0
+        var url = "https://elm.cangdu.org/bos/orders"; // 接口    
+        var params = { // 参数
+            "offset": num,
+            "limit": 20
+        }
+        if ($("#neir").html("")) {
+            ajax(url, "GET", params, function (res) {
+                console.log(res);
+                for (var i = 0; i < res.length; i++) {
+                    $(`
+                    <div class="box">
+                            <div class="menu">
+        <ul>
+            <li>
+                <span> 
+                    <div class='trArr'>
+                                
+                               <i class="icon"></i>
+                                <span class='mingcheng'> ${res[i].id}</span>
+                                <span class='mingcheng'>${res[i].total_amount}</span>
+                                <span class='mingcheng'>${res[i].status_bar.title}</span>
+                               
+                            </div>    
+                </span>
+                <dl>
+                    <div class='mingzicheng'>
+                        <p>  <span>用户名 </span> <span></span></p>
+                        <p>  <span>收货地址 </span> <span></span></p>
+                        <p>  <span>店铺地址  </span> <span></span></p>
+                      
+                    </div>
+
+                    <div class='mingzicheng2'>
+                        <p><span>店铺名称</span> <span>${res[i].restaurant_name}</span></p>
+                        <p><span>店铺ID ID</span> <span> ${res[i].restaurant_id}</span></p>
+               
+                    </div> 
+                </dl>
+            </li>
+        </ul>
+        </div>
+    </div>
+    `).appendTo("#neir")
+                }
+          
+
+
+
+
+
+
+
+
+
+
+
+
+                $(".menu ul li").click(function () {
+                    $(this).find("dl").slideToggle(200).parent().siblings().find("dl").slideUp(200);
+                    $(this).find("span i").toggleClass('action').parents().siblings().find("span i").removeClass('action');
+                })
+            }), function (err) {
+                console.log(err)
+            }
+        }
+        $("#page").paging({
+            nowPage: 1, // 当前页码
+            pageNum: 302, // 总页码
+            buttonNum: 10, //要展示的页码数量
+            canJump: 1,// 是否能跳转。0=不显示（默认），1=显示
+            showOne: 0,//只有一页时，是否显示。0=不显示,1=显示（默认）
+            callback: function (num) { //回调函数
+                $("#page ul li").click(function () {
+                    $("#neir").html("")
+                    var url = "https://elm.cangdu.org/bos/orders"; // 接口    
+                    var params = { // 参数
+                        "offset": num,
+                        "limit": 20
+                    }
+
+                    ajax(url, "GET", params, function (res) {
+                        console.log(res[0]);
+                        for (var i = 0; i < res.length; i++) {
+                            $(`
+                            <div class="box">
+                            <div class="menu">
+        <ul>
+            <li>
+                <span> 
+                    <div class='trArr'>
+                                
+                               <i class="icon"></i>
+                                <span class='mingcheng'> ${res[i].id}</span>
+                                <span class='mingcheng'>${res[i].total_amount}</span>
+                                <span class='mingcheng'>${res[i].status_bar.title}</span>
+                               
+                            </div>    
+                </span>
+                <dl>
+                    <div class='mingzicheng'>
+                        <p>  <span>用户名 </span> <span></span></p>
+                        <p>  <span>收货地址 </span> <span></span></p>
+                        <p>  <span>店铺地址  </span> <span></span></p>
+                      
+                    </div>
+
+                    <div class='mingzicheng2'>
+                        <p><span>店铺名称</span> <span>${res[i].restaurant_name}</span></p>
+                        <p><span>店铺ID ID</span> <span> ${res[i].restaurant_id}</span></p>
+               
+                    </div> 
+                </dl>
+            </li>
+        </ul>
+        </div>
+    </div>
+                           `).appendTo("#neir")
+                           
+                        }
+
+                        $(".menu ul li").click(function () {
+                            $(this).find("dl").slideToggle(200).parent().siblings().find("dl").slideUp(200);
+                            $(this).find("span i").toggleClass('action').parents().siblings().find("span i").removeClass('action');
+                        })
+
+
+                       
+
+                       
+                    
+
+                        
+
+                        console.log("------")
+                    }), function (err) {
+                        console.log(err)
+                    }
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>
+<!-- 
+ -->
