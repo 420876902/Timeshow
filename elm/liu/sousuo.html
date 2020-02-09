@@ -124,9 +124,18 @@
     var jwds = window.location.search;
     var jwd = jwds.slice(5);
     console.log(jwd);
-    $('nav a:eq(0)').on("tap", function() {
-        location.href = "../li/index.html";
-    })
+    $('nav a:eq(0)').on("tap",function(){
+		location.href="../li/index.html";
+	})
+	$('nav a:eq(1)').on("tap",function(){
+		location.href="sousuo.html";
+	})
+	$('nav a:eq(2)').on("tap",function(){
+		location.href="dingdan.html";
+	})
+	$('nav a:eq(3)').on("tap",function(){
+		location.href="../gao/wode.html";
+	})
     $('#fh').on("tap", function() {
         location.href = "../li/index.html";
     })
