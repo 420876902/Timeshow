@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/jquery-1.11.3.js"></script>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <title>Document</title>
+    <style>
+        .top{
+            width: 100%;
+            height: 45px;
+            padding-top: 10px;
+            padding-left: 10px;
+            text-align: center;
+            position: relative;
+            background-color: #3190e8;
+        }
+        #back{
+            position:absolute;
+            left: 10px;
+            top:10px;
+            font-size:30px;
+        }
+        .toptext{
+            color:white;
+            font-weight: bold;
+        }
+        .one,.tow{
+            margin-top: 10px;
+            width: 100%;
+            height: 90px;
+            background-color: white;
+            line-height:80px;
+            font-size:16px;
+            padding-left: 10px;
+        }
+        .one img{
+            width: 70px;
+            border-radius:50%;
+            float: right;
+        }
+        .tow{
+            height: 50px;
+            line-height: 45px;
+        }
+        .tow span{
+            float: right;
+            color:#99999f;
+        }
+        button{
+            width: 100%;
+            height: 40px;
+            border-radius:10px;
+            margin-top: 20px;
+            background-color: #d8584a;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <span id="back"><</span>
+        <span class="toptext">账户信息</span>        
+    </div>
+    <div class="one">
+        头像
+        <img src=".././images/1.jpeg">
+    </div>
+    <div class="tow">
+        用户名
+        <span>11123121</span>
+    </div>
+    <div class="tow">
+        收货地址
+    </div>
+    <div class="tow">
+        登录密码
+    </div>
+    <button>退出</button>
+</body>
+</html>
