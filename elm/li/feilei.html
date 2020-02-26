@@ -170,30 +170,30 @@
 				shud = true;
 			}
 		})
+		$(".qued").on("tap",function(){
+			$(".feilei li:eq(2)").removeClass("mui-active");
+			$(".shaix").hide();
+			var delivery_mode = "delivery_mode";
+			var mode=[];
+			if($(".ps span").css("color","#57A9FF")){
+				mode.push($(".ps span").attr("id"));
+			}
+			datas[delivery_mode]=mode;
+			var arry = [];
+			var sxli = $(".sx ul li")
+			for(var i = 0;i < sxli.length;i++){
+				if($("sxli:eq("+i+") .name").css("color","#57A9FF")){
+					arry.push($("sxli:eq("+i+")").attr("id"));
+				}
+			}
+			var support_ids = "support_ids";
+			datas[support_ids]=arry;
+			fun();
+		})
 	})
 	$(".qingk").on("tap",function(){
 		$(".sx ul li").children(".name").css("color","#333");
 		$(".ps span").css("color","#333");
-	})
-	$(".qued").on("tap",function(){
-		$(".feilei li:eq(2)").removeClass("mui-active");
-		$(".shaix").hide();
-		var delivery_mode = "delivery_mode";
-		var mode=[];
-		if($(".ps span").css("color","#57A9FF")){
-			mode.push($(".ps span").attr("id"));
-		}
-		datas[delivery_mode]=mode;
-		var arry = [];
-		var sxli = document.getElementsByClassName("sx").children("ul").children();
-		for(var i = 0;i < sxli.length;i++){
-			if(sxli[i].children(".name").css("color","#57A9FF")){
-				arry.push(sxli[i].attr("id"));
-			}
-		}
-		var support_ids = "support_ids";
-		datas[support_ids]=arry;
-		fun();
 	})
 	$(".paixu ul li").on("tap",function(){
 		var idd = $(this).attr("id");
